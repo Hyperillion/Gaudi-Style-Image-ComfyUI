@@ -53,14 +53,14 @@ def upload_file(file_name, upload_token):
     return object_name
 
 
-def invoke_function(access_key_id, access_key_secret, endpoint):
+def invoke_function(access_key_id, access_key_secret, endpoint, file_path):
     # 注意：此处实例化的client请尽可能重复使用，避免重复建立连接，提升检测性能。
     client = create_client(access_key_id, access_key_secret, endpoint)
     # 创建RuntimeObject实例并设置运行参数。
     runtime = util_models.RuntimeOptions()
 
     # 本地文件的完整路径，例如D:\localPath\exampleFile.png
-    file_path = r"C:\Users\Public\Gaudi\GradioPython\output\2024-05-31-160305.webp"
+    # file_path = r"C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\Gaudi-Style-Image-ComfyUI\output\asdiugvalurhg123125.jpg"
 
     # 获取文件上传token
     upload_token = token_dict.setdefault(endpoint, None)
@@ -102,14 +102,15 @@ if __name__ == '__main__':
     # 获取RAM用户AccessKey Secret：os.environ['ALIBABA_CLOUD_ACCESS_KEY_SECRET']
     access_key_id = os.environ['ALIBABA_CLOUD_ACCESS_KEY_ID']
     access_key_secret = os.environ['ALIBABA_CLOUD_ACCESS_KEY_SECRET']
+    file_path = r"C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\Gaudi-Style-Image-ComfyUI\output\ea421ef5c4014cefba2ee021c9003545.webp"
     # 接入区域和地址请根据实际情况修改。
-    response = invoke_function(access_key_id, access_key_secret, 'green-cip.cn-shanghai.aliyuncs.com')
+    response = invoke_function(access_key_id, access_key_secret, 'green-cip.cn-shanghai.aliyuncs.com', file_path)
     # 自动路由。
     if response is not None:
         if UtilClient.equal_number(500,
                                    response.status_code) or (response.body is not None and 200 != response.body.code):
             # 区域切换到cn-beijing。
-            response = invoke_function(access_key_id, access_key_secret, 'green-cip.cn-beijing.aliyuncs.com')
+            response = invoke_function(access_key_id, access_key_secret, 'green-cip.cn-beijing.aliyuncs.com', file_path)
 
         if response.status_code == 200:
             # 调用成功。
@@ -117,7 +118,12 @@ if __name__ == '__main__':
             result = response.body
             print('response success. result:{}'.format(result))
             if result.code == 200:
-                result_data = result.data
-                print('result: {}'.format(result_data))
+                print(type(result.data.result))                
+                for i in result.data.result:
+                    if i.label != 'nonLabel' and i.confidence >= 20:
+                        print('fail')
+                        
+                    else:
+                        print('pass')
         else:
             print('response not success. status:{} ,result:{}'.format(response.status_code, response))

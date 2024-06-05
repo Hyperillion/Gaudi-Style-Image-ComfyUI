@@ -1,10 +1,7 @@
-import os
+result = [{'Confidence': 18.08, 'Label': 'sexual_femaleUnderwear'}, {'Confidence': 17.82, 'Label': 'suggestiveContent_sexhint'}]
+print(type(result))
 
-current_directory = os.getcwd()
-queue_directory = current_directory + r"\..\queue"
-input_directory = current_directory + r"\..\input"
-output_directory = current_directory + r"\..\output"
-comfy_input_directory = r"Gaudi-Style-Image-ComfyUI\input"
-comfy_output_directory = r"Gaudi-Style-Image-ComfyUI\output"
-
-print(queue_directory)
+if any(i['Confidence'] >= 20 for i in result):
+    print('fail')
+else:
+    print('pass')
