@@ -4,6 +4,7 @@ import json
 from urllib import request, parse
 import random
 import os
+import shutil
 import time
 import alicloudCheckSDK
 
@@ -56,9 +57,9 @@ def callComfyUI():
 
     prompt_workflow = json.load(open('gaudiWorkflow.json'))
 
-    queue_directory = r"C:\Users\Public\Gaudi\GradioPython\queue"
-    input_directory = r"C:\Users\Public\Gaudi\GradioPython\input"
-    output_directory = r"C:\Users\Public\Gaudi\GradioPython\output"
+    queue_directory = r"..\queue"
+    input_directory = r"..\input"
+    output_directory = r"..\output"
     queue_directory_b = os.fsencode(queue_directory)
     input_directory_b = os.fsencode(input_directory)
     # create a list of queue
@@ -94,60 +95,63 @@ def callComfyUI():
     # for every prompt in prompt_list...
     while runningState:
         # send image to processing
-        try:
-            for file in os.listdir(queue_directory_b):
-                filename = os.fsdecode(file)
-                # if filename in queued_file:
-                #     print(filename, "Already queued")
-                #     os.replace(os.path.join(input_directory.decode("utf-8"), filename), os.path.join(r"E:\GradioPython\finishedImage", filename))
-                #     continue
+        # try:
+        for file in os.listdir(queue_directory_b):
+            filename = os.fsdecode(file)
+            # if filename in queued_file:
+            #     print(filename, "Already queued")
+            #     os.replace(os.path.join(input_directory.decode("utf-8"), filename), os.path.join(r"E:\GradioPython\finishedImage", filename))
+            #     continue
 
-                # output queue length when it update
+            # output queue length when it update
 
-                # print("queue empty")
+            # print("queue empty")
 
-                if filename.lower().endswith(('.png', '.jpg', '.jpeg', 'webp')): 
-                    print("\n")
-                    # move image from queue folder to input folder
-                    os.replace(os.path.join(queue_directory, filename), os.path.join(input_directory, filename))
-                    load_image_node["inputs"]["image"] = os.path.join(input_directory, filename)
-                    # set the text prompt for positive CLIPTextEncode node
-                    #   prompt_pos_node["inputs"]["text"] = prompt
+            if filename.lower().endswith(('.png', '.jpg', '.jpeg', 'webp')): 
+                print("\n")
+                # move image from queue folder to input folder
+                shutil.copyfile(os.path.join(queue_directory, filename), os.path.join(input_directory, filename))
+                # os.replace(os.path.join(queue_directory, filename), os.path.join(input_directory, filename))
 
-                    # set a random seed in KSampler node 
-                    canny_ksampler_node["inputs"]["seed"] = random.randint(1, 18446744073709551614)
-                    depth_ksampler_node["inputs"]["seed"] = random.randint(1, 18446744073709551614)
+                load_image_node["inputs"]["image"] = os.path.join(input_directory, filename)
+                # set the text prompt for positive CLIPTextEncode node
+                #   prompt_pos_node["inputs"]["text"] = prompt
 
-                    # set filename prefix to be the same as prompt
-                    # (truncate to first 100 chars if necessary)
-                    fileprefix = filename
-                    if len(fileprefix) > 100:
-                        fileprefix = fileprefix[:100]
+                # set a random seed in KSampler node 
+                canny_ksampler_node["inputs"]["seed"] = random.randint(1, 18446744073709551614)
+                depth_ksampler_node["inputs"]["seed"] = random.randint(1, 18446744073709551614)
 
-                    save_image_node["inputs"]["filename_prefix"] = "%time" + fileprefix
-                    save_image_node["inputs"]["path"] = output_directory
+                # set filename prefix to be the same as prompt
+                # (truncate to first 100 chars if necessary)
+                fileprefix = filename
+                if len(fileprefix) > 100:
+                    fileprefix = fileprefix[:100]
 
-                    # everything set, add entire workflow to queue.
-                    queue_prompt(prompt_workflow)
+                save_image_node["inputs"]["filename_prefix"] = "%time" + fileprefix
+                save_image_node["inputs"]["path"] = output_directory
 
-                    # print the prompt that was queued
-                    print("Queued:", os.path.join(queue_directory, filename))
+                # everything set, add entire workflow to queue.
+                queue_prompt(prompt_workflow)
 
-                    # add the filename to the list of queued files
-                    queued_file.append(filename)
-                    task_counter += 1
+                # print the prompt that was queued
+                print("Queued:", os.path.join(queue_directory, filename))
 
-                    #waiting for process
-                    # time.sleep(10)
-                    continue
-                else:
-                    print(filename, "Not an image file")
-                    continue
+                # add the filename to the list of queued files
+                queued_file.append(filename)
+                task_counter += 1
+                os.remove(os.path.join(queue_directory, filename))
 
-        except:
-            print("Error occured")
-            time.sleep(0.5)
-            continue
+                #waiting for process
+                # time.sleep(10)
+                continue
+            else:
+                print(filename, "Not an image file")
+                continue
+
+        # except:
+        #     print("Error occured")
+        #     time.sleep(0.5)
+        #     continue
 
         # get queue size in ComfyUI
         prev_queue_remaining = queue_remaining
