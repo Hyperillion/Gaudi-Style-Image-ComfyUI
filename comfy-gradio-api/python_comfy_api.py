@@ -18,17 +18,17 @@ def queue_prompt(prompt_workflow):
     request.urlopen(req)    
 # ======================================================================
 
-def checkImage():
+def checkImage(file_path):
     access_key_id = os.environ['ALIBABA_CLOUD_ACCESS_KEY_ID']
     access_key_secret = os.environ['ALIBABA_CLOUD_ACCESS_KEY_SECRET']
     # 接入区域和地址请根据实际情况修改。
-    response = alicloudCheckSDK.invoke_function(access_key_id, access_key_secret, 'green-cip.cn-shanghai.aliyuncs.com')
+    response = alicloudCheckSDK.invoke_function(access_key_id, access_key_secret, 'green-cip.cn-shanghai.aliyuncs.com', file_path)
     # 自动路由。
     if response is not None:
         if alicloudCheckSDK.UtilClient.equal_number(500,
                                    response.status_code) or (response.body is not None and 200 != response.body.code):
             # 区域切换到cn-beijing。
-            response = alicloudCheckSDK.invoke_function(access_key_id, access_key_secret, 'green-cip.cn-beijing.aliyuncs.com')
+            response = alicloudCheckSDK.invoke_function(access_key_id, access_key_secret, 'green-cip.cn-beijing.aliyuncs.com', file_path)
 
         if response.status_code == 200:
             # 调用成功。
@@ -41,8 +41,15 @@ def checkImage():
         else:
             print('response not success. status:{} ,result:{}'.format(response.status_code, response))
 
+def getQueueRemaining():
+    queue_url = "http://127.0.0.1:8188/prompt"
+    queue_response = request.urlopen(queue_url)
+    queue_json = json.loads(queue_response.read())
+    queue_remaining = queue_json["exec_info"]["queue_remaining"]
+    return queue_remaining
 
-if __name__ == "__main__":
+
+def callComfyUI():
     # read workflow api data from file and convert it into dictionary 
     # assign to var prompt_workflow
     runningState = True
@@ -79,20 +86,31 @@ if __name__ == "__main__":
     # # each prompt will produce a batch of 4 images
     # empty_latent_img_node["inputs"]["batch_size"] = 4
 
+    # initialize parameters
+    waiting_status = False
+    queue_remaining = -1
+    dot_num = 0
+    task_counter = 0
     # for every prompt in prompt_list...
     while runningState:
+        # send image to processing
         try:
-            for file in os.listdir(input_directory_b):
+            for file in os.listdir(queue_directory_b):
                 filename = os.fsdecode(file)
-
                 # if filename in queued_file:
                 #     print(filename, "Already queued")
                 #     os.replace(os.path.join(input_directory.decode("utf-8"), filename), os.path.join(r"E:\GradioPython\finishedImage", filename))
                 #     continue
 
+                # output queue length when it update
+
+                # print("queue empty")
+
                 if filename.lower().endswith(('.png', '.jpg', '.jpeg', 'webp')): 
-                    os.replace(os.path.join(input_directory, filename), os.path.join(queue_directory, filename))
-                    load_image_node["inputs"]["image"] = os.path.join(queue_directory, filename)
+                    print("\n")
+                    # move image from queue folder to input folder
+                    os.replace(os.path.join(queue_directory, filename), os.path.join(input_directory, filename))
+                    load_image_node["inputs"]["image"] = os.path.join(input_directory, filename)
                     # set the text prompt for positive CLIPTextEncode node
                     #   prompt_pos_node["inputs"]["text"] = prompt
 
@@ -113,18 +131,41 @@ if __name__ == "__main__":
                     queue_prompt(prompt_workflow)
 
                     # print the prompt that was queued
-                    print("Queued:", os.path.join(input_directory, filename))
+                    print("Queued:", os.path.join(queue_directory, filename))
 
                     # add the filename to the list of queued files
                     queued_file.append(filename)
-                    time.sleep(15)
-                    # move the file to another directory 
+                    task_counter += 1
+
+                    #waiting for process
+                    # time.sleep(10)
                     continue
                 else:
                     print(filename, "Not an image file")
                     continue
+
         except:
             print("Error occured")
-            time.sleep(2)
+            time.sleep(0.5)
             continue
+
+        # get queue size in ComfyUI
+        prev_queue_remaining = queue_remaining
+        queue_remaining = getQueueRemaining()
+
+        # print queue size when it updates
+        if prev_queue_remaining != queue_remaining:
+            print("Queue Size:",queue_remaining)
+
+        # print waiting signal when queue is empty
+        if (queue_remaining == 0):
+            waitingMsg = "waiting for images." + "."  * (dot_num % 3) + " " * ((dot_num+2) % 3)
+            print("\r{}".format(waitingMsg), end='')
+            dot_num += 1
+
+        time.sleep(0.2)
+
+
+if __name__ == "__main__":
+    callComfyUI()
         
