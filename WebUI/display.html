@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Smooch+Sans:wght@200;500;700&family=Yellowtail&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/assets/cur/AY.ico">
+    <link href="assets/Family/font.css" rel="stylesheet" type="text/css">
+    <link href="lightbox/dist/css/lightbox.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="profileBG"></div>
+
+    <div class="nav_bar">
+        <div class="logo">
+            <a href="index.html">
+                <!-- <div id="logo_text1">A</div> -->
+                <div id="logo_text2"><span>A</span>ndy</div>
+                <div>YeJR</div>
+                <!-- <div id="logo_text3">YeJR</div> -->
+            </a>
+        </div>
+    </div>
+
+    <div id="main">
+        <!-- <h1 class="pageTitle"></br></br><span>P</span>hoto</br>Gallery</h1> -->
+
+        <!-- documentary -->
+        <div class="hoverBox">
+            <!-- <h1 class="catagoryTitle"><span>D</span><span>ocumentary</span></h1> -->
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+            <a class="picLink" href="../pass/2024-06-06-035215.webp" data-lightbox="image" data-title="My caption">
+                <img class="pics" src="../pass/2024-06-06-035215.webp">
+            </a>
+        </div>
+
+
+        <!-- <br>
+        <p Class="bgm">
+            Background Music: 晨雾 - Cicada
+        </p>
+
+        <audio class="player" autoplay="autoplay" loop="loop" preload="auto" controls="controls" src="assets/晨雾.mp3">
+        </audio> -->
+
+
+
+        <script src="lightbox/dist/js/lightbox-plus-jquery.js"></script>
+        <script>
+            lightbox.option({
+                'resizeDuration': 1000,
+                'wrapAround': true
+            })
+
+            const profile = document.querySelector(".profileBG");
+            // const background = document.querySelector(".pageTitle");
+            const linear = document.querySelector("#linear_bg");
+            const nav = document.querySelector(".nav_bar");
+
+            document.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const pageHeight = window.outerHeight;
+                const blurIndex = 0;
+
+                // if(scrollY !== 0){
+                //     // background.style.filter = `blur(calc(${scrollY}px / 100))`
+                //     background.style.backgroundPosition = `calc(50% + ${scrollY}px*0.5) calc(50% + ${scrollY}px*1)`
+                // }
+                // if(true){
+                //     // blurIndex = calc(scrollY/50)
+                //     profile.style.filter = `blur(4px)`
+
+                // }
+
+                if (scrollY <= 500) {
+                    linear.style.backgroundColor = `rgba(0, 0, 0, calc(${scrollY - 100}/500))`;
+                    nav.style.backgroundColor = `rgba(230,230,230, calc(${scrollY}/500))`;
+                } else {
+                    linear.style.backgroundColor = `rgba(0, 0, 0, 0.8))`;
+                    nav.style.backgroundColor = `rgba(230,230,230, 1)`;
+                }
+            })
+        </script>
+
+</body>
+
+</html>

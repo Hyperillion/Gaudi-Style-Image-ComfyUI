@@ -1,0 +1,51 @@
+## ComfyUI-Manager: installing dependencies done.
+[2024-06-06 21:10] ** ComfyUI startup time: 2024-06-06 21:10:32.894401
+[2024-06-06 21:10] ** Platform: Windows
+[2024-06-06 21:10] ** Python version: 3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]
+[2024-06-06 21:10] ** Python executable: C:\Users\andyy\AppData\Local\Programs\Python\Python312\python.exe
+[2024-06-06 21:10] ** Log path: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\Gaudi-Style-Image-ComfyUI\comfyui.log
+[2024-06-06 21:10] 
+Prestartup times for custom nodes:
+[2024-06-06 21:10]    0.6 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
+[2024-06-06 21:10] 
+Total VRAM 8192 MB, total RAM 16306 MB
+[2024-06-06 21:10] Set vram state to: NORMAL_VRAM
+[2024-06-06 21:10] Device: cuda:0 NVIDIA GeForce RTX 2070 SUPER : cudaMallocAsync
+[2024-06-06 21:10] VAE dtype: torch.float32
+[2024-06-06 21:10] Using pytorch cross attention
+[2024-06-06 21:10] [Crystools [0;32mINFO[0m] Crystools version: 1.12.0
+[2024-06-06 21:10] [Crystools [0;32mINFO[0m] CPU: AMD Ryzen 7 3700X 8-Core Processor - Arch: AMD64 - OS: Windows 11
+[2024-06-06 21:10] [Crystools [0;32mINFO[0m] GPU/s:
+[2024-06-06 21:10] [Crystools [0;32mINFO[0m] 0) NVIDIA GeForce RTX 2070 SUPER
+[2024-06-06 21:10] [Crystools [0;32mINFO[0m] NVIDIA Driver: 555.85
+[2024-06-06 21:10] ### Loading: ComfyUI-Manager (V2.35)
+[2024-06-06 21:10] ### ComfyUI Revision: 2178 [ece5acb8] | Released on '2024-05-12'
+[2024-06-06 21:10] [36;20m[comfyui_controlnet_aux] | INFO -> Using ckpts path: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts[0m
+[2024-06-06 21:10] [36;20m[comfyui_controlnet_aux] | INFO -> Using symlinks: False[0m
+[2024-06-06 21:10] [36;20m[comfyui_controlnet_aux] | INFO -> Using ort providers: ['CUDAExecutionProvider', 'DirectMLExecutionProvider', 'OpenVINOExecutionProvider', 'ROCMExecutionProvider', 'CPUExecutionProvider', 'CoreMLExecutionProvider'][0m
+[2024-06-06 21:10] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
+[2024-06-06 21:10] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/github-stats.json
+[2024-06-06 21:10] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
+[2024-06-06 21:10] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
+[2024-06-06 21:10] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
+[2024-06-06 21:10] C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\node_wrappers\dwpose.py:26: UserWarning: DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly
+  warnings.warn("DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly")
+[2024-06-06 21:10] [36;20m[comfy_mtb] | INFO -> loaded [96m73[0m nodes successfuly[0m
+[2024-06-06 21:10] [36;20m[comfy_mtb] | INFO -> Some nodes (5) could not be loaded. This can be ignored, but go to http://None:8188/mtb if you want more information.[0m
+[2024-06-06 21:10] 
+Import times for custom nodes:
+[2024-06-06 21:10]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\websocket_image_save.py
+[2024-06-06 21:10]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\image-resize-comfyui
+[2024-06-06 21:10]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui-tooling-nodes
+[2024-06-06 21:10]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Crystools-save
+[2024-06-06 21:10]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Image-Saver
+[2024-06-06 21:10]    0.1 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\mikey_nodes
+[2024-06-06 21:10]    0.4 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
+[2024-06-06 21:10]    0.5 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_segment_anything
+[2024-06-06 21:10]    0.7 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux
+[2024-06-06 21:10]    1.6 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfy_mtb
+[2024-06-06 21:10]    3.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Crystools
+[2024-06-06 21:10] 
+[2024-06-06 21:10] Starting server
+
+[2024-06-06 21:10] To see the GUI go to: http://0.0.0.0:8188

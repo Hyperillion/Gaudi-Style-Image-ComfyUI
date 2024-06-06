@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ReadImage</title>
+</head>
+<body>
+	<input type="file" id="selectFiles" onchange="dealSelectFiles()" webkitdirectory multiple>
+	<canvas id="myCanvas" width=1440 height=900></canvas>
+ 
+	<script type="text/javascript">
+		var imgPosX = 0;
+		var imgWidth = 256;
+		function dealSelectFiles(){
+			/// get select files.
+			var selectFiles = document.getElementById("selectFiles").files;
+			var index = 0;
+			for(var file of selectFiles){
+				index = index + 1;
+				console.log(file.webkitRelativePath);
+				
+				/// read file content.
+				var reader = new FileReader();
+				reader.readAsDataURL(file);
+ 
+				reader.onloadend = function(){
+					/// deal data.
+					var img = new Image();
+					/// after loader, result storage the file content result.
+					img.src = this.result;	
+					img.onload = function(){
+						var myCanvas = document.getElementById("myCanvas");
+						var cxt = myCanvas.getContext('2d');
+ 
+						cxt.drawImage(img, imgPosX, 0);
+						imgPosX += imgWidth;
+					}
+				}
+			}
+		}
+	</script>
+</body>
