@@ -8,6 +8,7 @@ import shutil
 import time
 import alicloudCheckSDK
 import threading
+from termcolor import colored
 
 # ======================================================================
 # This function sends a prompt workflow to the specified URL 
@@ -55,7 +56,7 @@ def checkImage(file_path = ""):
                 if filename.lower().endswith(('.png', '.jpg', '.jpeg', 'webp')): 
                     # move image from queue folder to input folder
                     file_path = os.path.join(output_directory, filename)
-                    print("get Image:", file_path)
+                    print("Checking Image:", filename)
                     response = alicloudCheckSDK.invoke_function(access_key_id, access_key_secret, 'green-cip.cn-shanghai.aliyuncs.com', file_path)
                     # 自动路由。
                     if response is not None:
@@ -76,8 +77,10 @@ def checkImage(file_path = ""):
                                         break
                                 if checkStatus:
                                     os.replace(os.path.join(output_directory, filename), os.path.join(pass_directory, filename))
+                                    print(colored('pass:','green'), filename)
                                 else:
                                     os.replace(os.path.join(output_directory, filename), os.path.join(fail_directory, filename))
+                                    print(colored('fail:','red'), filename)
                             else:
                                 continue
                         else:
@@ -162,7 +165,7 @@ def callComfyUI():
                 # print("queue empty")
 
                 if filename.lower().endswith(('.png', '.jpg', '.jpeg', 'webp')): 
-                    print("\n")
+                    # print("\n")
                     # move image from queue folder to input folder
                     # shutil.copyfile(os.path.join(queue_directory, filename), os.path.join(input_directory, filename))
                     os.replace(os.path.join(queue_directory, filename), os.path.join(input_directory, filename))
@@ -192,6 +195,8 @@ def callComfyUI():
                     # add the filename to the list of queued files
                     queued_file.append(filename)
                     # print the prompt that was queued
+                    if prev_queue_remaining == 0:
+                        print("")
                     print("Queued:", os.path.join(queue_directory, filename))
 
                     # task_counter += 1
@@ -222,7 +227,7 @@ def callComfyUI():
         # print waiting signal when queue is empty
         if (queue_remaining == 0):
             waitingMsg = "waiting for images." + "."  * (dot_num % 3) + " " * ((dot_num+2) % 3)
-            print("\r{}".format(waitingMsg), end='')
+            print("\r\r{}".format(waitingMsg), end='')
             dot_num += 1
 
         time.sleep(0.2)

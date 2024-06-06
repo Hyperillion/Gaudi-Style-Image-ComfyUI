@@ -1,2 +1,0 @@
-lename))
-            # print(type(directory))
