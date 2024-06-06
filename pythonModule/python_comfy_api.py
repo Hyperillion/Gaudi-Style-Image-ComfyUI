@@ -230,7 +230,7 @@ def callComfyUI():
             print("\r\r{}".format(waitingMsg), end='')
             dot_num += 1
 
-        time.sleep(0.2)
+        time.sleep(3)
 
 
 def print1test():
