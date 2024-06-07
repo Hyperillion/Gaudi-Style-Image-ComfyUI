@@ -1,7 +1,7 @@
-result = [{'Confidence': 18.08, 'Label': 'sexual_femaleUnderwear'}, {'Confidence': 17.82, 'Label': 'suggestiveContent_sexhint'}]
-print(type(result))
+import os
 
-if any(i['Confidence'] >= 20 for i in result):
-    print('fail')
-else:
-    print('pass')
+a = 'test.py'
+
+filename_pure, extension = os.path.splitext(a)
+print(filename_pure)
+print(extension[1:])

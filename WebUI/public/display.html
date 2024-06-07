@@ -83,8 +83,8 @@
 
         .modal-image {
             display: block;
-            max-width: 45%;
-            max-height: 90%;
+            max-width: 80%;
+            max-height: 80%;
             margin: auto;
             position: absolute;
             transition: transform 0.5s ease, top 0.5s ease, left 0.5s ease, width 0.5s ease, height 0.5s ease;
@@ -126,6 +126,7 @@
             position: fixed;
             z-index: 999;
             pointer-events: none;
+
         }
 
         .pngBG {
@@ -147,6 +148,16 @@
             border-width: 0.1vw;
             border-color: #E6AD8A;
         }
+
+        /* #modal-image-previous {
+            right: 0px;
+
+        } */
+
+        /* #modal-image {
+            left: 0px;
+
+        } */
     </style>
 </head>
 
@@ -163,34 +174,32 @@
         <div class="hoverBox" id="gallery"></div>
 
         <div id="modal" class="modal" onclick="hideModal()">
-            <img id="modal-image1" class="modal-image">
-            <img id="modal-image2" class="modal-image">
+            <img id="modal-image-previous" src="assets/gaudiFigure.png" class="modal-image">
+            <img id="modal-image" class="modal-image">
         </div>
+
     </div>
 
     <script>
-        let originalRects = [];
+        let originalRect;
+        let hideModalTimeout;
 
-        function updateGallery(imageFiles, newImage = null, secondImageDir = null) {
+        function updateGallery(imageFiles, newImage = null) {
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = ''; // 清空当前内容
-
-            let secondImage = null;
-
             imageFiles.forEach(file => {
                 const img = document.createElement('img');
                 img.className = 'pics';
                 img.src = `/pass/${file}`;
+                img.prevsrc = `	http://localhost:3000/pass/prev/${file}`;
                 img.alt = file;
-                img.onclick = () => showModal([img]);
+                img.onclick = () => showModal(img);
                 gallery.appendChild(img);
                 if (file === newImage) {
                     img.classList.add('zoom-in'); // 为新图像添加 zoom-in 类
-                    setTimeout(() => showModal([img, secondImage].filter(Boolean), true), 500); // 延迟以确保 zoom-in 动画完成
+                    setTimeout(() => showModal(img, true), 1000); // 延迟以确保 zoom-in 动画完成
                 }
-                if (secondImageDir && file.startsWith(secondImageDir)) {
-                    secondImage = img;
-                }
+
             });
             setTimeout(scrollToBottom, 100); // 延迟滚动以确保所有图像正确渲染
         }
@@ -215,116 +224,112 @@
             }
         }
 
-        function showModal(images, isNew = false) {
+        function resetHideModalTimeout() {
+            clearTimeout(hideModalTimeout);
+            hideModalTimeout = setTimeout(hideModal, 15000);
+        }
+
+        function showModal(image, isNew = false) {
             const modal = document.getElementById("modal");
-            const modalImage1 = document.getElementById("modal-image1");
-            const modalImage2 = document.getElementById("modal-image2");
-
+            const modalImage = document.getElementById("modal-image");
+            const modalImagePrevious = document.getElementById("modal-image-previous");
             modal.style.display = "block";
-            modalImage1.src = images[0].src;
-            if (images[1]) {
-                modalImage2.src = images[1].src;
-                modalImage2.style.display = "block";
-            } else {
-                modalImage2.style.display = "none";
-            }
 
-            originalRects = images.map(image => image.getBoundingClientRect());
+            modalImage.src = image.src;
+            modalImagePrevious.src = image.prevsrc;
 
-            modalImage1.style.top = originalRects[0].top + 'px';
-            modalImage1.style.left = originalRects[0].left + 'px';
-            modalImage1.style.width = originalRects[0].width + 'px';
-            modalImage1.style.height = originalRects[0].height + 'px';
-            modalImage1.style.transform = 'scale(1)';
+            const rect = image.getBoundingClientRect();
+            modalImage.style.top = rect.top + 'px';
+            modalImage.style.left = rect.left + 'px';
+            modalImage.style.width = rect.width + 'px';
+            modalImage.style.height = rect.height + 'px';
+            modalImage.style.transform = 'scale(1)';
 
-            if (images[1]) {
-                modalImage2.style.top = originalRects[1].top + 'px';
-                modalImage2.style.left = originalRects[1].left + 'px';
-                modalImage2.style.width = originalRects[1].width + 'px';
-                modalImage2.style.height = originalRects[1].height + 'px';
-                modalImage2.style.transform = 'scale(1)';
-            }
+            modalImagePrevious.style.top = rect.top + 'px';
+            modalImagePrevious.style.left = rect.left + 'px';
+            modalImagePrevious.style.width = rect.width + 'px';
+            modalImagePrevious.style.height = rect.height + 'px';
+            modalImagePrevious.style.transform = 'scale(1)';
+
+            originalRect = rect;
 
             const windowAspect = window.innerWidth / window.innerHeight;
-            const imageAspect1 = images[0].naturalWidth / images[0].naturalHeight;
-            let finalWidth1, finalHeight1;
+            const imageAspect = image.naturalWidth / image.naturalHeight;
 
-            if (imageAspect1 > windowAspect) {
-                finalWidth1 = window.innerWidth * 0.45;
-                finalHeight1 = finalWidth1 / imageAspect1;
+            let finalWidth, finalHeight;
+
+            if (imageAspect > windowAspect) {
+                finalWidth = window.innerWidth * 0.8;
+                finalHeight = finalWidth / imageAspect;
             } else {
-                finalHeight1 = window.innerHeight * 0.9;
-                finalWidth1 = finalHeight1 * imageAspect1;
-            }
-
-            let finalWidth2, finalHeight2;
-            if (images[1]) {
-                const imageAspect2 = images[1].naturalWidth / images[1].naturalHeight;
-                if (imageAspect2 > windowAspect) {
-                    finalWidth2 = window.innerWidth * 0.45;
-                    finalHeight2 = finalWidth2 / imageAspect2;
-                } else {
-                    finalHeight2 = window.innerHeight * 0.9;
-                    finalWidth2 = finalHeight2 * imageAspect2;
-                }
+                finalHeight = window.innerHeight * 0.8;
+                finalWidth = finalHeight * imageAspect;
             }
 
             setTimeout(() => {
-                modalImage1.style.top = `calc(50% - ${finalHeight1 / 2}px)`;
-                modalImage1.style.left = `calc(25% - ${finalWidth1 / 2}px)`;
-                modalImage1.style.width = finalWidth1 + 'px';
-                modalImage1.style.height = finalHeight1 + 'px';
-                modalImage1.style.transform = 'translate(0, 0) scale(1)';
+                modalImagePrevious.style.top = `calc(50% - ${finalHeight / 2}px)`;
+                modalImagePrevious.style.left = `calc(75% - ${finalWidth / 2}px)`;
+                modalImagePrevious.style.width = finalWidth + 'px';
+                modalImagePrevious.style.height = finalHeight + 'px';
+                modalImagePrevious.style.transform = 'translate(0, 0) scale(1)';
 
-                if (images[1]) {
-                    modalImage2.style.top = `calc(50% - ${finalHeight2 / 2}px)`;
-                    modalImage2.style.left = `calc(75% - ${finalWidth2 / 2}px)`;
-                    modalImage2.style.width = finalWidth2 + 'px';
-                    modalImage2.style.height = finalHeight2 + 'px';
-                    modalImage2.style.transform = 'translate(0, 0) scale(1)';
-                }
+                modalImage.style.top = `calc(50% - ${finalHeight / 2}px)`;
+                modalImage.style.left = `calc(25% - ${finalWidth / 2}px)`;
+                modalImage.style.width = finalWidth + 'px';
+                modalImage.style.height = finalHeight + 'px';
+                modalImage.style.transform = 'translate(0, 0) scale(1)';
 
-                // Automatically hide the modal after 2 seconds
-                hideModalTimeout = setTimeout(hideModal, 30000);
-
+                // Automatically hide the modal after 30 seconds
+                resetHideModalTimeout();
             }, 0);
+
+            modal.addEventListener('mousemove', resetHideModalTimeout);
+            modal.addEventListener('keydown', resetHideModalTimeout);
         }
 
         function hideModal() {
             const modal = document.getElementById("modal");
-            const modalImage1 = document.getElementById("modal-image1");
-            const modalImage2 = document.getElementById("modal-image2");
+            const modalImage = document.getElementById("modal-image");
+            const modalImagePrevious = document.getElementById("modal-image-previous");
+
+            // Clear the timeout
+            clearTimeout(hideModalTimeout);
+
+            // Remove event listeners to stop tracking user interaction
+            modal.removeEventListener('mousemove', resetHideModalTimeout);
+            modal.removeEventListener('keydown', resetHideModalTimeout);
 
             // Animate back to the original position and size
-            modalImage1.style.top = originalRects[0].top + 'px';
-            modalImage1.style.left = originalRects[0].left + 'px';
-            modalImage1.style.width = originalRects[0].width + 'px';
-            modalImage1.style.height = originalRects[0].height + 'px';
-            modalImage1.style.transform = 'scale(1)';
+            modalImage.style.top = originalRect.top + 'px';
+            modalImage.style.left = originalRect.left + 'px';
+            modalImage.style.width = originalRect.width + 'px';
+            modalImage.style.height = originalRect.height + 'px';
+            modalImage.style.transform = 'scale(1)';
 
-            if (originalRects[1]) {
-                modalImage2.style.top = originalRects[1].top + 'px';
-                modalImage2.style.left = originalRects[1].left + 'px';
-                modalImage2.style.width = originalRects[1].width + 'px';
-                modalImage2.style.height = originalRects[1].height + 'px';
-                modalImage2.style.transform = 'scale(1)';
-            }
+            modalImagePrevious.style.top = originalRect.top + 'px';
+            modalImagePrevious.style.left = originalRect.left + 'px';
+            modalImagePrevious.style.width = originalRect.width + 'px';
+            modalImagePrevious.style.height = originalRect.height + 'px';
+            modalImagePrevious.style.transform = 'scale(1)';
 
             // Wait for the transition to complete before hiding the modal
             setTimeout(() => {
                 modal.style.display = "none";
-                modalImage1.style.transform = '';
-                modalImage1.style.top = '';
-                modalImage1.style.left = '';
-                modalImage1.style.width = '';
-                modalImage1.style.height = '';
+                modalImage.style.transform = '';
+                modalImage.style.top = '';
+                modalImage.style.left = '';
+                modalImage.style.width = '';
+                modalImage.style.height = '';
 
-                modalImage2.style.transform = '';
-                modalImage2.style.top = '';
-                modalImage2.style.left = '';
-                modalImage2.style.width = '';
-                modalImage2.style.height = '';
+                modalImagePrevious.style.transform = '';
+                modalImagePrevious.style.top = '';
+                modalImagePrevious.style.left = '';
+                modalImagePrevious.style.width = '';
+                modalImagePrevious.style.height = '';
+
             }, 500);
+            // Automatically hide the modal after 30 seconds
+            hideModalTimeout = setTimeout(hideModal, 5000);
         }
 
         fetchImages();
@@ -334,7 +339,7 @@
         socket.addEventListener('message', event => {
             const data = JSON.parse(event.data);
             const { newImage, allImages } = data;
-            updateGallery(allImages, newImage, '"C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\Gaudi-Style-Image-ComfyUI\WebUI\public\assets\gaudiFigure.png"'); // Replace 'secondImageDir' with the directory of the second image
+            updateGallery(allImages, newImage);
         });
     </script>
 </body>

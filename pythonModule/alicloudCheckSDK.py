@@ -3,11 +3,13 @@ from alibabacloud_green20220302 import models
 from alibabacloud_tea_openapi.models import Config
 from alibabacloud_tea_util.client import Client as UtilClient
 from alibabacloud_tea_util import models as util_models
+import alicloudCheckSDK
 import json
 import uuid
 import oss2
 import time
 import os
+from termcolor import colored
 
 # 服务是否部署在vpc上
 is_vpc = False
@@ -93,8 +95,7 @@ def invoke_function(access_key_id, access_key_secret, endpoint, file_path):
     except Exception as err:
         print(err)
 
-
-if __name__ == '__main__':
+def checkAIGCImage(file_path = "", output_directory = "", pass_directory= "", fail_directory= ""):
     # 阿里云账号AccessKey拥有所有API的访问权限，建议您使用RAM用户进行API访问或日常运维。
     # 强烈建议不要把AccessKey ID和AccessKey Secret保存到工程代码里，否则可能导致AccessKey泄露，威胁您账号下所有资源的安全。
     # 常见获取环境变量方式：
@@ -102,28 +103,80 @@ if __name__ == '__main__':
     # 获取RAM用户AccessKey Secret：os.environ['ALIBABA_CLOUD_ACCESS_KEY_SECRET']
     access_key_id = os.environ['ALIBABA_CLOUD_ACCESS_KEY_ID']
     access_key_secret = os.environ['ALIBABA_CLOUD_ACCESS_KEY_SECRET']
-    file_path = r"C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\Gaudi-Style-Image-ComfyUI\output\ea421ef5c4014cefba2ee021c9003545.webp"
     # 接入区域和地址请根据实际情况修改。
-    response = invoke_function(access_key_id, access_key_secret, 'green-cip.cn-shanghai.aliyuncs.com', file_path)
-    # 自动路由。
-    if response is not None:
-        if UtilClient.equal_number(500,
-                                   response.status_code) or (response.body is not None and 200 != response.body.code):
-            # 区域切换到cn-beijing。
-            response = invoke_function(access_key_id, access_key_secret, 'green-cip.cn-beijing.aliyuncs.com', file_path)
 
-        if response.status_code == 200:
-            # 调用成功。
-            # 获取审核结果。
-            result = response.body
-            print('response success. result:{}'.format(result))
-            if result.code == 200:
-                print(type(result.data.result))                
-                for i in result.data.result:
-                    if i.label != 'nonLabel' and i.confidence >= 20:
-                        print('fail')
-                        
-                    else:
-                        print('pass')
-        else:
-            print('response not success. status:{} ,result:{}'.format(response.status_code, response))
+    current_directory = os.getcwd()
+
+    output_directory = current_directory + r"\..\output"
+    pass_directory = current_directory + r"\..\pass"
+    fail_directory = current_directory + r"\..\fail"
+
+    output_directory_b = os.fsencode(output_directory)
+
+    SensitivityThreshold = 20
+    runningState = True
+    # for every image in output folder...
+    while runningState:
+        time.sleep(1)
+        # send image to processing
+        try:
+            for file in os.listdir(output_directory_b):
+                filename = os.fsdecode(file)
+                # if filename in queued_file:
+                #     print(filename, "Already queued")
+                #     os.replace(os.path.join(input_directory.decode("utf-8"), filename), os.path.join(r"E:\GradioPython\finishedImage", filename))
+                #     continue
+
+                # output queue length when it update
+
+                # print("queue empty")
+                checkStatus = True
+                if filename.lower().endswith(('.png', '.jpg', '.jpeg', 'webp')): 
+                    # move image from queue folder to input folder
+                    file_path = os.path.join(output_directory, filename)
+                    print("Checking Image:", filename)
+                    response = alicloudCheckSDK.invoke_function(access_key_id, access_key_secret, 'green-cip.cn-shanghai.aliyuncs.com', file_path)
+                    # 自动路由。
+                    if response is not None:
+                        if alicloudCheckSDK.UtilClient.equal_number(500,
+                                                response.status_code) or (response.body is not None and 200 != response.body.code):
+                            # 区域切换到cn-beijing。
+                            response = alicloudCheckSDK.invoke_function(access_key_id, access_key_secret, 'green-cip.cn-beijing.aliyuncs.com', file_path)
+
+                        if response.status_code == 200:
+                            # 调用成功。
+                            # 获取审核结果。
+                            result = response.body
+                            print('response success. result:{}'.format(result))
+                            if result.code == 200:
+                                for i in result.data.result:
+                                    if i.label != 'nonLabel' and i.confidence >= 20:
+                                        checkStatus = False
+                                        break
+                                if checkStatus:
+                                    os.replace(os.path.join(output_directory, filename), os.path.join(pass_directory, filename))
+                                    print(colored('pass:','green'), filename)
+                                else:
+                                    os.replace(os.path.join(output_directory, filename), os.path.join(fail_directory, filename))
+                                    print(colored('fail:','red'), filename)
+                            else:
+                                continue
+                        else:
+                            print('response not success. status:{} ,result:{}'.format(response.status_code, response))
+
+                    # continue
+                else:
+                    print(filename, "Not an image file")
+                    # continue
+
+        except Exception as error:
+            # handle the exception
+            print("An exception occurred:", error)
+            print("Check Error Occured")
+            time.sleep(0.5)
+            continue
+
+
+if __name__ == '__main__':
+    print("Checking Image...")
+    checkAIGCImage()
