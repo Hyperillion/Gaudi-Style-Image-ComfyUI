@@ -126,9 +126,17 @@
             right: -5%;
             bottom: -10%;
             position: fixed;
-            z-index: 9999;
+            z-index: 999;
             pointer-events: none;
 
+        }
+        .pngBG{
+            width: 40%;
+            right: 0%;
+            bottom: -15%;
+            position: fixed;
+            z-index: -9998;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -138,9 +146,9 @@
         <!-- <h1>Image Gallery</h1> -->
         <img src="assets/header.png" class="header">
 
-        <!-- <img src="assets/bgsarga.png" class = "pngBG"> -->
-        <img src="assets/bg.jpg" class="backgroundColor">
-        <!-- <div class="backgroundColor"></div> -->
+        <img src="assets/bgsarga.png" class = "pngBG">
+        <!-- <img src="assets/bg.jpg" class="backgroundColor"> -->
+        <div class="backgroundColor"></div>
         <img class="gaudiFigure" src="assets/gaudiFigure.png">
 
         <div class="hoverBox" id="gallery"></div>

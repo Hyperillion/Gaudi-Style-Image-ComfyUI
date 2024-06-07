@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Upload</title>
+    <title>当高迪遇见AI</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,8 +27,21 @@
         }
 
         input[type="file"] {
-            display: block;
-            margin: 20px auto;
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #0056b3;
         }
 
         button {
@@ -38,23 +51,44 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
         }
 
         button:hover {
             background-color: #0056b3;
         }
+
+        img {
+            max-width: 100%;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Upload an Image</h1>
+        <h1>上传你的建筑图片</h1>
         <form id="uploadForm" enctype="multipart/form-data">
+            <label for="imageInput" class="custom-file-upload">
+                选择图片
+            </label>
             <input type="file" id="imageInput" name="image" accept="image/*" required>
-            <button type="submit">Upload</button>
+            <button type="submit">上传图片</button>
         </form>
         <div id="message"></div>
+        <img id="preview" src="" alt="Image Preview">
     </div>
     <script>
+        document.getElementById('imageInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
         document.getElementById('uploadForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData();
