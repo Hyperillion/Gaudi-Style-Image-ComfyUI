@@ -3,8 +3,18 @@ const fs = require('fs');
 const path = require('path');
 const WebSocket = require('ws');
 const multer = require('multer');
+const crypto = require('crypto');
+
 const app = express();
 const port = 3000;
+
+// Generate a random filename
+const generateRandomFilename = (originalname) => {
+    const randomBytes = crypto.randomBytes(16).toString('hex');
+    const timestamp = Date.now();
+    const extension = path.extname(originalname);
+    return `${randomBytes}-${timestamp}${extension}`;
+};
 
 const uploadFolder = path.resolve(__dirname, '../queue');
 const imagesFolder = path.resolve(__dirname, '../pass');
@@ -21,7 +31,7 @@ const storage = multer.diskStorage({
         cb(null, uploadFolder);
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname);
+        cb(null, generateRandomFilename(file.originalname));
     }
 });
 
