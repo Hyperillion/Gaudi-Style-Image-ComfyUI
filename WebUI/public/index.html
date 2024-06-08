@@ -21,8 +21,6 @@
             user-select: none;
             position: fixed;
             background-color: #9F3934;
-            /* padding: 20px; */
-            /* border-radius: 8px; */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             max-width: 400px;
@@ -34,7 +32,8 @@
             display: none;
         }
 
-        .custom-file-upload {
+        .custom-file-upload,
+        button {
             user-select: none;
             display: inline-block;
             cursor: pointer;
@@ -44,45 +43,16 @@
             border: none;
             font-size: x-large;
             margin: 2vw;
-            /* font-family: ; */
             width: 40vw;
-            /* Adjust width as needed */
             height: 16vw;
-            /* Adjust height as needed */
             line-height: 16vw;
-            /* Adjust line height to vertically center the text */
             box-sizing: border-box;
-            /* Include padding and border in the element's total width and height */
             padding: 0;
-            /* Remove padding to match the button */
         }
 
         .custom-file-upload:hover {
             background-color: #CE9770;
         }
-
-        button {
-            user-select: none;
-            background-color: #CE9770;
-            color: rgb(255, 255, 255);
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-            border-radius: 5px;
-            font-size: x-large;
-            margin: 2vw;
-            width: 40vw;
-            /* Adjust width as needed */
-            height: 16vw;
-            /* Adjust height as needed */
-            line-height: 16vw;
-            /* Adjust line height to vertically center the text */
-            box-sizing: border-box;
-            /* Include padding and border in the element's total width and height */
-            padding: 0;
-            /* Remove padding to match the custom file upload */
-        }
-
 
         img {
             max-width: 100%;
@@ -98,7 +68,6 @@
             height: 100%;
             position: fixed;
             z-index: -9999;
-            /* opacity: 0.5; */
         }
 
         .pngBG {
@@ -113,8 +82,10 @@
 
         #preview {
             margin: 5vw;
-            max-width: 84%;
-            max-height: 70vh;
+            width: 84vw;
+            height: 84vw;
+            object-fit: cover;
+            object-position: center;
             border-style: solid;
             border-width: 3vw;
             border-color: gainsboro;
@@ -149,6 +120,7 @@
         </form>
         <div id="message"></div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.0.7/dist/compressor.min.js"></script>
     <script>
         document.getElementById('imageInput').addEventListener('change', (e) => {
             const file = e.target.files[0];
@@ -163,17 +135,45 @@
 
         document.getElementById('uploadForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const formData = new FormData();
-            formData.append('image', document.getElementById('imageInput').files[0]);
 
-            const response = await fetch('/upload', {
-                method: 'POST',
-                body: formData
-            });
+            const file = document.getElementById('imageInput').files[0];
+            if (file) {
+                const fileName = file.name;
+                const extension = fileName.substring(fileName.lastIndexOf('.'));
 
-            const result = await response.json();
-            document.getElementById('message').textContent = result.message;
-            window.location.replace("/success.html");
+                new Compressor(file, {
+                    quality: 0.8,
+                    success(result) {
+                        if (result.size <= 5 * 1024 * 1024) { // 5MB in bytes
+                            const compressedFile = new File([result], fileName, {
+                                type: result.type,
+                                lastModified: Date.now(),
+                            });
+
+                            const formData = new FormData();
+                            formData.append('image', compressedFile);
+
+                            fetch('/upload', {
+                                method: 'POST',
+                                body: formData
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    document.getElementById('message').textContent = data.message;
+                                    window.location.replace("/success.html");
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+                        } else {
+                            document.getElementById('message').textContent = 'The compressed image is still larger than 5MB.';
+                        }
+                    },
+                    error(err) {
+                        console.error(err.message);
+                    },
+                });
+            }
         });
     </script>
 </body>

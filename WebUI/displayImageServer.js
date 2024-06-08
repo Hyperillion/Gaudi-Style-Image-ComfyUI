@@ -13,11 +13,11 @@ const generateRandomFilename = (originalname) => {
     const randomBytes = crypto.randomBytes(16).toString('hex');
     const timestamp = Date.now();
     const extension = path.extname(originalname);
-    return `${randomBytes}-${timestamp}${extension}`;
+    return `${timestamp}${randomBytes}${extension}`;
 };
 
-const uploadFolder = path.resolve(__dirname, '../queue');
-const imagesFolder = path.resolve(__dirname, '../pass');
+const uploadFolder = path.resolve(__dirname, '../preCheck');
+const imagesFolder = path.resolve(__dirname, 'public/pass');
 const publicFolder = path.resolve(__dirname, 'public');
 console.log('Images folder path:', imagesFolder);
 console.log('Public folder path:', publicFolder);

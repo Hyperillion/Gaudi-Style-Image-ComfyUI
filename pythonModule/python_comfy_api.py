@@ -8,6 +8,7 @@ import shutil
 import time
 import alicloudCheckSDK
 import threading
+from PIL import Image
 from termcolor import colored
 
 # ======================================================================
@@ -29,16 +30,38 @@ def getQueueRemaining():
     return queue_remaining
 
 
+# def crop_center(image_path, output_path):
+#     # Open an image file
+#     with Image.open(image_path) as img:
+#         # Get dimensions
+#         width, height = img.size
+
+#         # Determine the size of the square
+#         new_size = min(width, height)
+
+#         # Calculate the coordinates for cropping
+#         left = (width - new_size) / 2
+#         top = (height - new_size) / 2
+#         right = (width + new_size) / 2
+#         bottom = (height + new_size) / 2
+
+#         # Crop the center of the image
+#         img_cropped = img.crop((left, top, right, bottom))
+
+#         # Save the cropped image
+#         img_cropped.save(output_path)
+
 def callComfyUI():
     # read workflow api data from file and convert it into dictionary 
     # assign to var prompt_workflow
     runningState = True
 
-    prompt_workflow = json.load(open('gaudiWorkflow.json'))
+    prompt_workflow = json.load(open('gaudiSavePrev.json'))
 
     current_directory = os.getcwd()
     queue_directory = current_directory + r"\..\queue"
-    input_directory = current_directory + r"\..\pass\prev"
+    input_directory = current_directory + r"\..\input"
+    prev_directory = current_directory + r"\..\WebUI\public\prev"
     output_directory = current_directory + r"\..\output"
     queue_directory_b = os.fsencode(queue_directory)
     input_directory_b = os.fsencode(input_directory)
@@ -50,13 +73,14 @@ def callComfyUI():
 
     # # give some easy-to-remember names to the nodes
     # chkpoint_loader_node = prompt_workflow["4"]
-    # prompt_pos_node = prompt_workflow["6"]
+    prompt_pos_node = prompt_workflow["6"]
     # empty_latent_img_node = prompt_workflow["5"]
     canny_ksampler_node = prompt_workflow["3"]
     depth_ksampler_node = prompt_workflow["26"]
     # lora_node = prompt_workflow["11"]
-    save_image_node = prompt_workflow["39"]
     load_image_node = prompt_workflow["18"]
+    save_image_node = prompt_workflow["39"]
+    save_prev_image_node = prompt_workflow["40"]
     # filename_load_node = prompt_workflow["43"]
 
     # # load the checkpoint. 
@@ -88,6 +112,9 @@ def callComfyUI():
                 # print("queue empty")
 
                 if filename.lower().endswith(('.png', '.jpg', '.jpeg', 'webp')): 
+
+
+
                     os.rename(os.path.join(queue_directory, filename), os.path.join(queue_directory, filename.lower()))
                     filename = filename.lower()
                     filename_pure, extension = os.path.splitext(filename)
@@ -110,6 +137,8 @@ def callComfyUI():
                     # canny_ksampler_node["inputs"]["seed"] = 1
                     # depth_ksampler_node["inputs"]["seed"] = 1
 
+
+                    prompt_pos_node["inputs"]["text"] = "Antonio Gaudi's architecture, sunny, bright, nature curves, colorful mosaic, RAW photo, subject, 8k uhd, dslr, soft lighting, high quality, film grain, Fujifilm XT3"
                     # set filename prefix to be the same as prompt
                     # (truncate to first 100 chars if necessary)
                     fileprefix = filename
@@ -120,6 +149,10 @@ def callComfyUI():
                     save_image_node["inputs"]["filename"] = filename_pure
                     save_image_node["inputs"]["path"] = output_directory
                     save_image_node["inputs"]["extension"] = extension[1:]
+
+                    save_prev_image_node["inputs"]["filename"] = filename_pure
+                    save_prev_image_node["inputs"]["path"] = prev_directory
+                    save_prev_image_node["inputs"]["extension"] = extension[1:]
 
                     # everything set, add entire workflow to queue.
                     queue_prompt(prompt_workflow)

@@ -9,6 +9,7 @@ import uuid
 import oss2
 import time
 import os
+import threading
 from termcolor import colored
 
 # 服务是否部署在vpc上
@@ -95,7 +96,7 @@ def invoke_function(access_key_id, access_key_secret, endpoint, file_path):
     except Exception as err:
         print(err)
 
-def checkAIGCImage(file_path = "", output_directory = "", pass_directory= "", fail_directory= ""):
+def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= ""):
     # 阿里云账号AccessKey拥有所有API的访问权限，建议您使用RAM用户进行API访问或日常运维。
     # 强烈建议不要把AccessKey ID和AccessKey Secret保存到工程代码里，否则可能导致AccessKey泄露，威胁您账号下所有资源的安全。
     # 常见获取环境变量方式：
@@ -105,11 +106,11 @@ def checkAIGCImage(file_path = "", output_directory = "", pass_directory= "", fa
     access_key_secret = os.environ['ALIBABA_CLOUD_ACCESS_KEY_SECRET']
     # 接入区域和地址请根据实际情况修改。
 
-    current_directory = os.getcwd()
+    # current_directory = os.getcwd()
 
-    output_directory = current_directory + r"\..\output"
-    pass_directory = current_directory + r"\..\pass"
-    fail_directory = current_directory + r"\..\fail"
+    # output_directory = current_directory + r"\..\output"
+    # pass_directory = current_directory + r"\..\pass"
+    # fail_directory = current_directory + r"\..\fail"
 
     output_directory_b = os.fsencode(output_directory)
 
@@ -179,4 +180,17 @@ def checkAIGCImage(file_path = "", output_directory = "", pass_directory= "", fa
 
 if __name__ == '__main__':
     print("Checking Image...")
-    checkAIGCImage()
+    current_directory = os.getcwd()
+
+    preCheckThread = threading.Thread(target=checkAIGCImage, args=(current_directory + r"\..\preCheck", current_directory + r"\..\queue", current_directory + r"\..\fail"))
+    checkAIGCThread = threading.Thread(target=checkAIGCImage, args=(current_directory + r"\..\output", current_directory + r"\..\WebUI\public\pass", current_directory + r"\..\fail"))
+    preCheckThread.setDaemon(True)
+    checkAIGCThread.setDaemon(True)
+    preCheckThread.start()
+    checkAIGCThread.start()
+
+    while 1:
+        pass
+        
+    
+    
