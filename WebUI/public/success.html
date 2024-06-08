@@ -30,7 +30,8 @@
             height: 30px;
             width: 0;
             background-color: #CE9770;
-            text-align: center;
+            text-align: right;
+            padding-right: 5vw;
             line-height: 30px;
             color: white;
             border-radius: 25px;
@@ -202,8 +203,8 @@
                     });
             };
 
-            // Fetch progress every 5 seconds initially
-            let intervalId = setInterval(fetchProgress, 5000);
+            // Fetch progress every 1.2 seconds initially
+            let intervalId = setInterval(fetchProgress, 1200);
             fetchProgress();  // Initial fetch to avoid waiting for the first interval
         } else {
             document.getElementById('progressText').textContent = 'Filename not found in URL';

@@ -165,7 +165,7 @@ def callComfyUI():
                     
                     progress={
                         "stage": "sendToComfyUI", 
-                        "progress": 0.8
+                        "progress": 0.4
                         }
                     
                     json_path = os.path.join(json_directory, filename_pure + ".json")
