@@ -1,11 +1,185 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>当高迪遇见AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #9F3934;
+            flex-direction: column;
+        }
+
+        .progress-container {
+            width: 80%;
+            background-color: #e0e0e0;
+            border-radius: 25px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            height: 30px;
+            width: 0;
+            background-color: #CE9770;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            border-radius: 25px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        #progressText {
+            color: white;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .header {
+            margin: 0px;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .backgroundColor {
+            left: 0px;
+            top: 0px;
+            bottom: -100px;
+            background-color: #9F3934;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: -9999;
+        }
+
+        .pngBG {
+            height: 100%;
+            right: 0%;
+            bottom: -10%;
+            width: 200vw;
+            position: fixed;
+            z-index: -9998;
+            pointer-events: none;
+            filter: blur(2px);
+        }
+
+        .container {
+            user-select: none;
+            position: fixed;
+            background-color: #9F3934;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Success, Waiting your image to be processed</h1>
-    
+
+    <!-- <h1>Success, Waiting for your image to be processed</h1> -->
+    <div class="progress-container">
+        <img src="assets/headerMobile.png" class="header">
+        <img class="pngBG" src="assets/bgsargaMobile.png">
+        
+        <div id="progressBar" class="progress-bar">0%</div>
+    </div>
+    <div id="progressText"></div>
+
+    <script>
+        // Function to get query parameters from the URL
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.slice(1);
+            const pairs = queryString.split('&');
+
+            for (const pair of pairs) {
+                const [key, value] = pair.split('=');
+                params[decodeURIComponent(key)] = decodeURIComponent(value);
+            }
+
+            return params;
+        }
+
+        // Get the filename from the URL
+        const params = getQueryParams();
+        const filename = params.filename;
+
+        if (filename) {
+            // Construct the URL to fetch the JSON data
+            const jsonUrl = `http://192.168.124.59:3000/log/${filename.replace(/\.[^/.]+$/, ".json")}`;
+
+            let retryCount = 0;
+            const maxRetries = 5;
+
+            // Function to fetch and update the progress
+            const fetchProgress = () => {
+                fetch(jsonUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const progress = data.progress;
+                        const progressBar = document.getElementById('progressBar');
+                        const progressText = document.getElementById('progressText');
+
+                        progressBar.style.width = `${(progress / 1) * 100}%`;
+                        progressBar.textContent = `${Math.round((progress / 1) * 100)}%`;
+
+                        if (progress === 0.2) {
+                            progressText.textContent = '正在进行图片预审核';
+                        } else if (progress === 0.4) {
+                            progressText.textContent = '正在等待AI图像生成';
+                        } else if (progress === 0.9) {
+                            progressText.textContent = '正在进行AI图片审核';
+                        } else if (progress === 1) {
+                            progressText.textContent = '成功生成图片，请在大屏幕上查看';
+                        } else if (progress === -1) {
+                            progressBar.style.width = '0%';
+                            progressBar.textContent = '0%';
+                            progressText.textContent = '图片审核未通过，请换一张试试';
+                        }
+
+                        // Stop fetching if progress reaches 1.2
+                        if (progress >= 1.2) {
+                            clearInterval(intervalId);
+                        } else {
+                            retryCount = 0;  // Reset retry count on success
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching progress data:', error);
+                        const progressBar = document.getElementById('progressBar');
+                        const progressText = document.getElementById('progressText');
+
+                        progressText.textContent = '成功上传图片，正在等待处理';
+                        progressBar.style.width = `10%`;
+                        progressBar.textContent = `10%`;
+
+                        // Exponential backoff
+                        if (retryCount < maxRetries) {
+                            retryCount++;
+                            clearInterval(intervalId);
+                            intervalId = setInterval(fetchProgress, Math.pow(2, retryCount) * 1000);
+                        }
+                    });
+            };
+
+            // Fetch progress every 5 seconds initially
+            let intervalId = setInterval(fetchProgress, 5000);
+            fetchProgress();  // Initial fetch to avoid waiting for the first interval
+        } else {
+            document.getElementById('progressText').textContent = 'Filename not found in URL';
+        }
+    </script>
 </body>
 </html>

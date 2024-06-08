@@ -63,6 +63,7 @@ def callComfyUI():
     input_directory = current_directory + r"\..\input"
     prev_directory = current_directory + r"\..\WebUI\public\prev"
     output_directory = current_directory + r"\..\output"
+    json_directory = current_directory + r"\..\WebUI\public\log"
     queue_directory_b = os.fsencode(queue_directory)
     input_directory_b = os.fsencode(input_directory)
     # create a list of queue
@@ -113,8 +114,6 @@ def callComfyUI():
 
                 if filename.lower().endswith(('.png', '.jpg', '.jpeg', 'webp')): 
 
-
-
                     os.rename(os.path.join(queue_directory, filename), os.path.join(queue_directory, filename.lower()))
                     filename = filename.lower()
                     filename_pure, extension = os.path.splitext(filename)
@@ -163,7 +162,16 @@ def callComfyUI():
                     if prev_queue_remaining == 0:
                         print("")
                     print("Queued:", os.path.join(queue_directory, filename))
-
+                    
+                    progress={
+                        "stage": "sendToComfyUI", 
+                        "progress": 0.8
+                        }
+                    
+                    json_path = os.path.join(json_directory, filename_pure + ".json")
+                    with open(json_path, 'w') as file:
+                        json.dump(progress, file)
+                        print('update json file:', progress)
                     # task_counter += 1
                     # os.remove(os.path.join(queue_directory, filename))
 

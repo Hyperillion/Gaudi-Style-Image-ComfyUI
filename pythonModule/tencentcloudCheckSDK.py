@@ -68,9 +68,11 @@ def Image2Base64(image_path):
         image = f.read()
     return base64.b64encode(image).decode('utf-8')
 
-def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= ""):
-    
+def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= "", preChecking = False):
+    # current_directory = os.getcwd()
     output_directory_b = os.fsencode(output_directory)
+    json_directory = fail_directory + r"\..\WebUI\public\log"
+    # print(preChecking)
     
     while True:
         time.sleep(1)
@@ -90,6 +92,27 @@ def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= ""
                 if filename.lower().endswith(('.png', '.jpg', '.jpeg', 'webp')): 
                     # move image from queue folder to input folder
                     file_path = os.path.join(output_directory, filename)
+                    filename_pure, file_extension = os.path.splitext(filename)     
+                    json_path = os.path.join(json_directory, filename_pure + ".json")
+                    
+                    
+                    if preChecking:
+                        progress={
+                            "stage": "preCheck",
+                            "progress": 0.2
+                        }
+                        # print("PreChecking Image json", filename, json_path)
+                    else:
+                        progress={
+                            "stage": "AICheck",
+                            "progress": 0.9
+                        }
+                        # print("AIChecking Image json", filename, json_path)
+                        
+                    with open(json_path, 'w') as file:
+                        json.dump(progress, file)
+                        print('update json file:', progress)
+                        
                     print("Checking Image:", filename)
                     try:
                         # 初始化凭证
@@ -114,6 +137,7 @@ def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= ""
 
                         # 设置请求参数
                         params = {
+                            # "BizType": "1799358210964983808",
                             "FileContent": Image2Base64(file_path)
                         }
                         req.from_json_string(json.dumps(params))
@@ -130,10 +154,29 @@ def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= ""
                         if response_dict['Suggestion'] == 'Pass':
                             os.replace(os.path.join(output_directory, filename), os.path.join(pass_directory, filename))
                             print(colored('pass:','green'), filename)
+                            if preChecking:
+                                progress={
+                                    "stage": "waitingComfyUI",
+                                    "progress": 0.4
+                                }
+                            else:
+                                progress={
+                                    "stage": "pass",
+                                    "progress": 1
+                                }
                         else:
                             os.replace(os.path.join(output_directory, filename), os.path.join(fail_directory, filename))
                             print(colored('fail:','red'), filename)
-                            print(response_dict['SubLabel'], response_dict['Score'])
+                            print(response_dict['Label'],response_dict['SubLabel'], response_dict['Score'])
+                            print(response_dict)
+                            progress={
+                                "stage": "fail",
+                                "progress": -1
+                            }
+                            
+                        with open(json_path, 'w') as file:
+                            json.dump(progress, file)
+                            print('update json file:', progress)
                             
                     except TencentCloudSDKException as err:
                         print(err)
@@ -155,8 +198,8 @@ if __name__ == "__main__":
     print("Checking Image...")
     current_directory = os.getcwd()
 
-    preCheckThread = threading.Thread(target=checkAIGCImage, args=(current_directory + r"\..\preCheck", current_directory + r"\..\queue", current_directory + r"\..\fail"))
-    checkAIGCThread = threading.Thread(target=checkAIGCImage, args=(current_directory + r"\..\output", current_directory + r"\..\WebUI\public\pass", current_directory + r"\..\fail"))
+    preCheckThread = threading.Thread(target=checkAIGCImage, args=(current_directory + r"\..\preCheck", current_directory + r"\..\queue", current_directory + r"\..\fail", True))
+    checkAIGCThread = threading.Thread(target=checkAIGCImage, args=(current_directory + r"\..\output", current_directory + r"\..\WebUI\public\pass", current_directory + r"\..\fail", False))
     preCheckThread.setDaemon(True)
     checkAIGCThread.setDaemon(True)
     preCheckThread.start()
