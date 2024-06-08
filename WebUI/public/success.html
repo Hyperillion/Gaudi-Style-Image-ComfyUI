@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,6 +52,7 @@
             z-index: 9999;
             pointer-events: none;
         }
+
         .backgroundColor {
             left: 0px;
             top: 0px;
@@ -84,18 +86,42 @@
             height: 100%;
         }
 
+        .credits {
+            margin: 0px;
+            padding: 0px;
+            position: fixed;
+            color: rgb(182, 182, 182);
+            font-size: 12px;
+            bottom: 25px;
+            text-align: center;
+        }
+
+        p {
+            margin: 0px;
+            padding: 0px;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- <h1>Success, Waiting for your image to be processed</h1> -->
     <div class="progress-container">
         <img src="assets/headerMobile.png" class="header">
         <img class="pngBG" src="assets/bgsargaMobile.png">
-        
+
         <div id="progressBar" class="progress-bar">0%</div>
     </div>
     <div id="progressText"></div>
+    <div class="credits">
+        <p>项目作者:Jinran Ye</p>
+        <p>联系方式:andy.ye@nyu.edu</p>
+        <p>----</p>
+        <p>特别感谢</p>
+        <p>中国建筑科技馆</p>
+        <p>@YouWu 提供简洁美观的UI/UX设计</p>
+        <p>@YQBen 提供高质量的高迪Lora预训练模型</p>
+    </div>
 
     <script>
         // Function to get query parameters from the URL
@@ -129,6 +155,8 @@
                     .then(response => response.json())
                     .then(data => {
                         const progress = data.progress;
+                        // const queueRemaining = data.exec_info.queue_remaining;
+                        // const queueTime = queueRemaining * 20;
                         const progressBar = document.getElementById('progressBar');
                         const progressText = document.getElementById('progressText');
 
@@ -138,7 +166,7 @@
                         if (progress === 0.2) {
                             progressText.textContent = '正在进行图片预审核';
                         } else if (progress === 0.4) {
-                            progressText.textContent = '正在等待AI图像生成';
+                            progressText.textContent = `正在等待AI图像生成，大约需要20秒`;
                         } else if (progress === 0.9) {
                             progressText.textContent = '正在进行AI图片审核';
                         } else if (progress === 1) {
@@ -182,4 +210,5 @@
         }
     </script>
 </body>
+
 </html>
