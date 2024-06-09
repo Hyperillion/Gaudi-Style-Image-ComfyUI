@@ -99,12 +99,14 @@ def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= ""
                     if preChecking:
                         progress={
                             "stage": "preCheck",
+                            "queue_length": 1,
                             "progress": 0.2
                         }
                         # print("PreChecking Image json", filename, json_path)
                     else:
                         progress={
                             "stage": "AICheck",
+                            "queue_length": 1,
                             "progress": 0.9
                         }
                         # print("AIChecking Image json", filename, json_path)
@@ -137,7 +139,7 @@ def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= ""
 
                         # 设置请求参数
                         params = {
-                            # "BizType": "1799358210964983808",
+                            "BizType": "1799358210964983808",
                             "FileContent": Image2Base64(file_path)
                         }
                         req.from_json_string(json.dumps(params))
@@ -157,11 +159,13 @@ def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= ""
                             if preChecking:
                                 progress={
                                     "stage": "waitingComfyUI",
+                                    "queue_length": 1,
                                     "progress": 0.4
                                 }
                             else:
                                 progress={
                                     "stage": "pass",
+                                    "queue_length": 1,
                                     "progress": 1
                                 }
                         else:
@@ -171,6 +175,7 @@ def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= ""
                             print(response_dict)
                             progress={
                                 "stage": "fail",
+                                "queue_length": 1,
                                 "progress": -1
                             }
                             

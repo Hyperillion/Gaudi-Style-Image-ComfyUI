@@ -163,8 +163,10 @@ def callComfyUI():
                         print("")
                     print("Queued:", os.path.join(queue_directory, filename))
                     
+                    queue_remaining = getQueueRemaining()
                     progress={
-                        "stage": "sendToComfyUI", 
+                        "stage": "sendToComfyUI",
+                        "queue_length": queue_remaining,
                         "progress": 0.4
                         }
                     

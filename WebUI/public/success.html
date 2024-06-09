@@ -115,7 +115,7 @@
     </div>
     <div id="progressText"></div>
     <div class="credits">
-        <p>项目作者:Jinran Ye</p>
+        <p>项目作者:叶进然</p>
         <p>联系方式:andy.ye@nyu.edu</p>
         <p>----</p>
         <p>特别感谢</p>
@@ -143,6 +143,8 @@
         const params = getQueryParams();
         const filename = params.filename;
 
+
+
         if (filename) {
             // Construct the URL to fetch the JSON data
             const jsonUrl = `http://192.168.124.59:3000/log/${filename.replace(/\.[^/.]+$/, ".json")}`;
@@ -156,6 +158,7 @@
                     .then(response => response.json())
                     .then(data => {
                         const progress = data.progress;
+                        const jsonQueueLength = data.queue_length;
                         // const queueRemaining = data.exec_info.queue_remaining;
                         // const queueTime = queueRemaining * 20;
                         const progressBar = document.getElementById('progressBar');
@@ -167,7 +170,7 @@
                         if (progress === 0.2) {
                             progressText.textContent = '正在进行图片预审核';
                         } else if (progress === 0.4) {
-                            progressText.textContent = `正在等待AI图像生成，大约需要20秒`;
+                            progressText.textContent = `正在等待AI图像生成，大约需要${jsonQueueLength * 20}秒`;
                         } else if (progress === 0.9) {
                             progressText.textContent = '正在进行AI图片审核';
                         } else if (progress === 1) {
