@@ -166,7 +166,8 @@ def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= ""
                                 progress={
                                     "stage": "pass",
                                     "queue_length": 1,
-                                    "progress": 1
+                                    "progress": 1,
+                                    "output_filename": filename
                                 }
                         else:
                             os.replace(os.path.join(output_directory, filename), os.path.join(fail_directory, filename))

@@ -101,27 +101,49 @@
             margin: 0px;
             padding: 0px;
         }
+
+        .backButton {
+            display: none;
+            margin-top: 20px;
+            background-color: #CE9770;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        #outputImage {
+            display: none;
+            width: 90%;
+            /* height: 100%; */
+            object-fit: contain;
+            border-style: solid;
+            border-width: 3vw;
+            border-color: gainsboro;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- <h1>Success, Waiting for your image to be processed</h1> -->
+    <img src="assets/preview.png" id="outputImage">
+    <!-- <p id="outputText">111111111</p> -->
+    <img src="assets/headerMobile.png" class="header">
+    <img class="pngBG" src="assets/bgsargaMobile.png">
     <div class="progress-container">
-        <img src="assets/headerMobile.png" class="header">
-        <img class="pngBG" src="assets/bgsargaMobile.png">
-
         <div id="progressBar" class="progress-bar">0%</div>
     </div>
     <div id="progressText"></div>
+    <button onclick="window.location.href = 'index.html'" class="backButton">再试一张</button>
     <div class="credits">
         <p>项目作者:叶进然</p>
         <p>联系方式:andy.ye@nyu.edu</p>
         <p>----</p>
         <p>特别感谢</p>
         <p>中国建筑科技馆</p>
-        <p>@YouWu 提供简洁美观的UI/UX设计</p>
-        <p>@YQBen 提供高质量的高迪Lora预训练模型</p>
+        <p>UI设计：@YouWu</p>
+        <p>高迪Lora预训练模型：@YQBen</p>
     </div>
 
     <script>
@@ -143,6 +165,8 @@
         const params = getQueryParams();
         const filename = params.filename;
 
+        const showImage = true;
+
 
 
         if (filename) {
@@ -159,6 +183,7 @@
                     .then(data => {
                         const progress = data.progress;
                         const jsonQueueLength = data.queue_length;
+                        const outputFilename = data.output_filename;
                         // const queueRemaining = data.exec_info.queue_remaining;
                         // const queueTime = queueRemaining * 20;
                         const progressBar = document.getElementById('progressBar');
@@ -170,7 +195,7 @@
                         if (progress === 0.2) {
                             progressText.textContent = '正在进行图片预审核';
                         } else if (progress === 0.4) {
-                            progressText.textContent = `正在等待AI图像生成，大约需要${jsonQueueLength * 20}秒`;
+                            progressText.textContent = `正在等待AI图像生成,请耐心等待${jsonQueueLength * 20}秒`;
                         } else if (progress === 0.9) {
                             progressText.textContent = '正在进行AI图片审核';
                         } else if (progress === 1) {
@@ -182,8 +207,17 @@
                         }
 
                         // Stop fetching if progress reaches 1.2
-                        if (progress >= 1.2) {
+                        if (progress >= 1) {
                             clearInterval(intervalId);
+                            //display 再试一张 button
+                            document.querySelector('.backButton').style.display = 'block';
+                            if (showImage){
+                                document.querySelector('#outputImage').style.display = 'block';
+                                document.querySelector('.progress-container').style.display = 'none';
+                                document.querySelector('#progressText').style.display = 'none';
+                                document.getElementById("outputImage").src=`http://192.168.124.59:3000/pass/${outputFilename}`;
+                                document.getElementById("outputText").innerHTML=`http://192.168.124.59:3000/pass/${outputFilename}`;
+                            }
                         } else {
                             retryCount = 0;  // Reset retry count on success
                         }
@@ -210,7 +244,7 @@
             let intervalId = setInterval(fetchProgress, 1200);
             fetchProgress();  // Initial fetch to avoid waiting for the first interval
         } else {
-            document.getElementById('progressText').textContent = 'Filename not found in URL';
+            document.getElementById('progressText').textContent = '追踪进度失败';
         }
     </script>
 </body>

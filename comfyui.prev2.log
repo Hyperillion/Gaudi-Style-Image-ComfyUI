@@ -1,72 +1,351 @@
 ## ComfyUI-Manager: installing dependencies done.
-[2024-06-08 23:06] ** ComfyUI startup time: 2024-06-08 23:06:57.549822
-[2024-06-08 23:06] ** Platform: Windows
-[2024-06-08 23:06] ** Python version: 3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]
-[2024-06-08 23:06] ** Python executable: C:\Users\andyy\AppData\Local\Programs\Python\Python312\python.exe
-[2024-06-08 23:06] ** Log path: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\Gaudi-Style-Image-ComfyUI\comfyui.log
-[2024-06-08 23:06] 
+[2024-06-10 01:05] ** ComfyUI startup time: 2024-06-10 01:05:25.234235
+[2024-06-10 01:05] ** Platform: Windows
+[2024-06-10 01:05] ** Python version: 3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]
+[2024-06-10 01:05] ** Python executable: C:\Users\andyy\AppData\Local\Programs\Python\Python312\python.exe
+[2024-06-10 01:05] ** Log path: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\Gaudi-Style-Image-ComfyUI\comfyui.log
+[2024-06-10 01:05] 
 Prestartup times for custom nodes:
-[2024-06-08 23:06]    0.4 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
-[2024-06-08 23:06] 
+[2024-06-10 01:05]    0.3 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
+[2024-06-10 01:05] 
 Total VRAM 8192 MB, total RAM 16306 MB
-[2024-06-08 23:06] Set vram state to: NORMAL_VRAM
-[2024-06-08 23:06] Device: cuda:0 NVIDIA GeForce RTX 2070 SUPER : cudaMallocAsync
-[2024-06-08 23:06] VAE dtype: torch.float32
-[2024-06-08 23:07] Using pytorch cross attention
-[2024-06-08 23:07] [Crystools [0;32mINFO[0m] Crystools version: 1.12.0
-[2024-06-08 23:07] [Crystools [0;32mINFO[0m] CPU: AMD Ryzen 7 3700X 8-Core Processor - Arch: AMD64 - OS: Windows 11
-[2024-06-08 23:07] [Crystools [0;32mINFO[0m] GPU/s:
-[2024-06-08 23:07] [Crystools [0;32mINFO[0m] 0) NVIDIA GeForce RTX 2070 SUPER
-[2024-06-08 23:07] [Crystools [0;32mINFO[0m] NVIDIA Driver: 555.85
-[2024-06-08 23:07] ### Loading: ComfyUI-Manager (V2.35)
-[2024-06-08 23:07] ### ComfyUI Revision: 2178 [ece5acb8] | Released on '2024-05-12'
-[2024-06-08 23:07] [36;20m[comfyui_controlnet_aux] | INFO -> Using ckpts path: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts[0m
-[2024-06-08 23:07] [36;20m[comfyui_controlnet_aux] | INFO -> Using symlinks: False[0m
-[2024-06-08 23:07] [36;20m[comfyui_controlnet_aux] | INFO -> Using ort providers: ['CUDAExecutionProvider', 'DirectMLExecutionProvider', 'OpenVINOExecutionProvider', 'ROCMExecutionProvider', 'CPUExecutionProvider', 'CoreMLExecutionProvider'][0m
-[2024-06-08 23:07] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
-[2024-06-08 23:07] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/github-stats.json
-[2024-06-08 23:07] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
-[2024-06-08 23:07] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
-[2024-06-08 23:07] C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\node_wrappers\dwpose.py:26: UserWarning: DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly
+[2024-06-10 01:05] Set vram state to: NORMAL_VRAM
+[2024-06-10 01:05] Device: cuda:0 NVIDIA GeForce RTX 2070 SUPER : cudaMallocAsync
+[2024-06-10 01:05] VAE dtype: torch.float32
+[2024-06-10 01:05] Using pytorch cross attention
+[2024-06-10 01:05] [Crystools [0;32mINFO[0m] Crystools version: 1.12.0
+[2024-06-10 01:05] [Crystools [0;32mINFO[0m] CPU: AMD Ryzen 7 3700X 8-Core Processor - Arch: AMD64 - OS: Windows 11
+[2024-06-10 01:05] [Crystools [0;32mINFO[0m] GPU/s:
+[2024-06-10 01:05] [Crystools [0;32mINFO[0m] 0) NVIDIA GeForce RTX 2070 SUPER
+[2024-06-10 01:05] [Crystools [0;32mINFO[0m] NVIDIA Driver: 555.85
+[2024-06-10 01:05] ### Loading: ComfyUI-Manager (V2.35)
+[2024-06-10 01:05] ### ComfyUI Revision: 2178 [ece5acb8] | Released on '2024-05-12'
+[2024-06-10 01:05] Exception in thread Thread-10 (<lambda>):
+[2024-06-10 01:05] Traceback (most recent call last):
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 1203, in _create_direct_connection
+[2024-06-10 01:05]     hosts = await self._resolve_host(host, port, traces=traces)
+[2024-06-10 01:05]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 880, in _resolve_host
+[2024-06-10 01:05]     return await asyncio.shield(resolved_host_task)
+[2024-06-10 01:05]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 917, in _resolve_host_with_throttle
+[2024-06-10 01:05]     addrs = await self._resolver.resolve(host, port, family=self._family)
+[2024-06-10 01:05]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+[2024-06-10 01:05]     infos = await self._loop.getaddrinfo(
+[2024-06-10 01:05]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 901, in getaddrinfo
+[2024-06-10 01:05]     return await self.run_in_executor(
+[2024-06-10 01:05]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+[2024-06-10 01:05]     result = self.fn(*self.args, **self.kwargs)
+[2024-06-10 01:05]           [36;20m[comfyui_controlnet_aux] | INFO -> Using ckpts path: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts[0m
+[2024-06-10 01:05]   [36;20m[comfyui_controlnet_aux] | INFO -> Using symlinks: False[0m
+[2024-06-10 01:05]  ^[36;20m[comfyui_controlnet_aux] | INFO -> Using ort providers: ['CUDAExecutionProvider', 'DirectMLExecutionProvider', 'OpenVINOExecutionProvider', 'ROCMExecutionProvider', 'CPUExecutionProvider', 'CoreMLExecutionProvider'][0m
+[2024-06-10 01:05] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\socket.py", line 963, in getaddrinfo
+[2024-06-10 01:05]     for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+[2024-06-10 01:05]                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05] socket.gaierror: [Errno 11004] getaddrinfo failed
+[2024-06-10 01:05] 
+[2024-06-10 01:05] The above exception was the direct cause of the following exception:
+[2024-06-10 01:05] 
+[2024-06-10 01:05] Traceback (most recent call last):
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\threading.py", line 1073, in _bootstrap_inner
+[2024-06-10 01:05]     self.run()
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\threading.py", line 1010, in run
+[2024-06-10 01:05]     self._target(*self._args, **self._kwargs)
+[2024-06-10 01:05]   File "C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager\glob\manager_server.py", line 1667, in <lambda>
+[2024-06-10 01:05]     threading.Thread(target=lambda: asyncio.run(default_cache_update())).start()
+[2024-06-10 01:05]                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+[2024-06-10 01:05]     return runner.run(main)
+[2024-06-10 01:05]            ^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+[2024-06-10 01:05]     return self._loop.run_until_complete(task)
+[2024-06-10 01:05]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+[2024-06-10 01:05]     return future.result()
+[2024-06-10 01:05]            ^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager\glob\manager_server.py", line 1664, in default_cache_update
+[2024-06-10 01:05]     await asyncio.gather(a, b, c, d, e)
+[2024-06-10 01:05]   File "C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager\glob\manager_server.py", line 1651, in get_cache
+[2024-06-10 01:05]     json_obj = await core.get_data(uri, True)
+[2024-06-10 01:05]                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager\glob\manager_core.py", line 583, in get_data
+[2024-06-10 01:05]     async with session.get(uri) as resp:
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\client.py", line 1197, in __aenter__
+[2024-06-10 01:05]     self._resp = await self._coro
+[2024-06-10 01:05]                  ^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\client.py", line 581, in _request
+[2024-06-10 01:05]     conn = await self._connector.connect(
+[2024-06-10 01:05]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 544, in connect
+[2024-06-10 01:05]     proto = await self._create_connection(req, traces, timeout)
+[2024-06-10 01:05]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 944, in _create_connection
+[2024-06-10 01:05]     _, proto = await self._create_direct_connection(req, traces, timeout)
+[2024-06-10 01:05]                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-06-10 01:05]   File "C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 1209, in _create_direct_connection
+[2024-06-10 01:05]     raise ClientConnectorError(req.connection_key, exc) from exc
+[2024-06-10 01:05] aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host raw.githubusercontent.com:443 ssl:default [getaddrinfo failed]
+[2024-06-10 01:05] C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\node_wrappers\dwpose.py:26: UserWarning: DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly
   warnings.warn("DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly")
-[2024-06-08 23:07] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
-[2024-06-08 23:07] [36;20m[comfy_mtb] | INFO -> loaded [96m73[0m nodes successfuly[0m
-[2024-06-08 23:07] [36;20m[comfy_mtb] | INFO -> Some nodes (5) could not be loaded. This can be ignored, but go to http://None:8188/mtb if you want more information.[0m
-[2024-06-08 23:07] 
+[2024-06-10 01:05] [36;20m[comfy_mtb] | INFO -> loaded [96m73[0m nodes successfuly[0m
+[2024-06-10 01:05] [36;20m[comfy_mtb] | INFO -> Some nodes (5) could not be loaded. This can be ignored, but go to http://None:8188/mtb if you want more information.[0m
+[2024-06-10 01:05] 
 Import times for custom nodes:
-[2024-06-08 23:07]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\websocket_image_save.py
-[2024-06-08 23:07]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\image-resize-comfyui
-[2024-06-08 23:07]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui-tooling-nodes
-[2024-06-08 23:07]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\mikey_nodes
-[2024-06-08 23:07]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Crystools-save
-[2024-06-08 23:07]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Image-Saver
-[2024-06-08 23:07]    0.3 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
-[2024-06-08 23:07]    0.4 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux
-[2024-06-08 23:07]    0.5 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_segment_anything
-[2024-06-08 23:07]    2.8 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfy_mtb
-[2024-06-08 23:07]    3.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Crystools
-[2024-06-08 23:07] 
-[2024-06-08 23:07] Starting server
+[2024-06-10 01:05]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\websocket_image_save.py
+[2024-06-10 01:05]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\image-resize-comfyui
+[2024-06-10 01:05]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui-tooling-nodes
+[2024-06-10 01:05]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\mikey_nodes
+[2024-06-10 01:05]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Crystools-save
+[2024-06-10 01:05]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Image-Saver
+[2024-06-10 01:05]    0.3 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
+[2024-06-10 01:05]    0.3 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_segment_anything
+[2024-06-10 01:05]    0.4 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux
+[2024-06-10 01:05]    2.9 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfy_mtb
+[2024-06-10 01:05]    3.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Crystools
+[2024-06-10 01:05] 
+[2024-06-10 01:05] Starting server
 
-[2024-06-08 23:07] To see the GUI go to: http://0.0.0.0:8188
-[2024-06-08 23:09] got prompt
-[2024-06-08 23:09] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
-[2024-06-08 23:09] C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\functional.py:512: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ..\aten\src\ATen\native\TensorShape.cpp:3588.)
+[2024-06-10 01:05] To see the GUI go to: http://0.0.0.0:8188
+[2024-06-10 01:06] got prompt
+[2024-06-10 01:06] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:06] C:\Users\andyy\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\functional.py:512: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ..\aten\src\ATen\native\TensorShape.cpp:3588.)
   return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
-[2024-06-08 23:09] model_type EPS
-[2024-06-08 23:09] Using pytorch attention in VAE
-[2024-06-08 23:09] Using pytorch attention in VAE
-[2024-06-08 23:09] Requested to load SD1ClipModel
-[2024-06-08 23:09] Loading 1 new model
-[2024-06-08 23:09] C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\comfy\ldm\modules\attention.py:345: UserWarning: 1Torch was not compiled with flash attention. (Triggered internally at ..\aten\src\ATen\native\transformers\cuda\sdp_utils.cpp:455.)
+[2024-06-10 01:06] model_type EPS
+[2024-06-10 01:06] Using pytorch attention in VAE
+[2024-06-10 01:06] Using pytorch attention in VAE
+[2024-06-10 01:06] Requested to load SD1ClipModel
+[2024-06-10 01:06] Loading 1 new model
+[2024-06-10 01:06] C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\comfy\ldm\modules\attention.py:345: UserWarning: 1Torch was not compiled with flash attention. (Triggered internally at ..\aten\src\ATen\native\transformers\cuda\sdp_utils.cpp:455.)
   out = torch.nn.functional.scaled_dot_product_attention(q, k, v, attn_mask=mask, dropout_p=0.0, is_causal=False)
-[2024-06-08 23:10] Requested to load BaseModel
-[2024-06-08 23:10] Requested to load ControlNet
-[2024-06-08 23:10] Loading 2 new models
-[2024-06-08 23:10] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.39it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.44it/s]
-[2024-06-08 23:10] Requested to load ControlNet
-[2024-06-08 23:10] Loading 1 new model
-[2024-06-08 23:10] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.41it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.49it/s]
-[2024-06-08 23:10] Requested to load AutoencoderKL
-[2024-06-08 23:10] Loading 1 new model
-[2024-06-08 23:10] Prompt executed in 23.33 seconds
+[2024-06-10 01:06] Requested to load BaseModel
+[2024-06-10 01:06] Requested to load ControlNet
+[2024-06-10 01:06] Loading 2 new models
+[2024-06-10 01:06] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.36it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.37it/s]
+[2024-06-10 01:06] Requested to load ControlNet
+[2024-06-10 01:06] Loading 1 new model
+[2024-06-10 01:06] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.43it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.46it/s]
+[2024-06-10 01:06] Requested to load AutoencoderKL
+[2024-06-10 01:06] Loading 1 new model
+[2024-06-10 01:06] Prompt executed in 24.69 seconds
+[2024-06-10 01:07] got prompt
+[2024-06-10 01:07] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:07] Requested to load BaseModel
+[2024-06-10 01:07] Requested to load ControlNet
+[2024-06-10 01:07] Loading 2 new models
+[2024-06-10 01:07] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.40it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.48it/s]
+[2024-06-10 01:07] Requested to load ControlNet
+[2024-06-10 01:07] Loading 1 new model
+[2024-06-10 01:07] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.33it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.39it/s]
+[2024-06-10 01:07] Prompt executed in 17.95 seconds
+[2024-06-10 01:09] got prompt
+[2024-06-10 01:09] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:09] Requested to load BaseModel
+[2024-06-10 01:09] Requested to load ControlNet
+[2024-06-10 01:09] Loading 2 new models
+[2024-06-10 01:09] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.40it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.48it/s]
+[2024-06-10 01:09] Requested to load ControlNet
+[2024-06-10 01:09] Loading 1 new model
+[2024-06-10 01:09] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.28it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.38it/s]
+[2024-06-10 01:09] Prompt executed in 17.46 seconds
+[2024-06-10 01:10] got prompt
+[2024-06-10 01:10] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:10] Requested to load BaseModel
+[2024-06-10 01:10] Requested to load ControlNet
+[2024-06-10 01:10] Loading 2 new models
+[2024-06-10 01:10] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.37it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.46it/s]
+[2024-06-10 01:10] Requested to load ControlNet
+[2024-06-10 01:10] Loading 1 new model
+[2024-06-10 01:10] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.33it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.40it/s]
+[2024-06-10 01:10] Prompt executed in 16.62 seconds
+[2024-06-10 01:11] got prompt
+[2024-06-10 01:11] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:11] Requested to load BaseModel
+[2024-06-10 01:11] Requested to load ControlNet
+[2024-06-10 01:11] Loading 2 new models
+[2024-06-10 01:11] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.39it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.48it/s]
+[2024-06-10 01:11] Requested to load ControlNet
+[2024-06-10 01:11] Loading 1 new model
+[2024-06-10 01:11] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.33it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.39it/s]
+[2024-06-10 01:11] Prompt executed in 17.07 seconds
+[2024-06-10 01:17] got prompt
+[2024-06-10 01:17] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:17] Requested to load BaseModel
+[2024-06-10 01:17] Requested to load ControlNet
+[2024-06-10 01:17] Loading 2 new models
+[2024-06-10 01:18] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.40it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.48it/s]
+[2024-06-10 01:18] Requested to load ControlNet
+[2024-06-10 01:18] Loading 1 new model
+[2024-06-10 01:18] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.30it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.34it/s]
+[2024-06-10 01:18] Prompt executed in 20.98 seconds
+[2024-06-10 01:19] got prompt
+[2024-06-10 01:19] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:19] Requested to load SD1ClipModel
+[2024-06-10 01:19] Loading 1 new model
+[2024-06-10 01:19] Requested to load BaseModel
+[2024-06-10 01:19] Requested to load ControlNet
+[2024-06-10 01:19] Loading 2 new models
+[2024-06-10 01:19] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.37it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.45it/s]
+[2024-06-10 01:19] Requested to load ControlNet
+[2024-06-10 01:19] Loading 1 new model
+[2024-06-10 01:19] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:06<00:00,  1.11s/it]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:06<00:00,  1.33s/it]
+[2024-06-10 01:19] Prompt executed in 24.61 seconds
+[2024-06-10 01:20] got prompt
+[2024-06-10 01:20] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:20] Requested to load SD1ClipModel
+[2024-06-10 01:20] Loading 1 new model
+[2024-06-10 01:20] Requested to load ControlNet
+[2024-06-10 01:20] Requested to load BaseModel
+[2024-06-10 01:20] Loading 2 new models
+[2024-06-10 01:20] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.35it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.43it/s]
+[2024-06-10 01:20] Requested to load ControlNet
+[2024-06-10 01:20] Loading 1 new model
+[2024-06-10 01:21] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:14<00:00,  2.72s/it]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:14<00:00,  3.55s/it]
+[2024-06-10 01:21] Prompt executed in 29.37 seconds
+[2024-06-10 01:21] got prompt
+[2024-06-10 01:21] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:21] Requested to load ControlNet
+[2024-06-10 01:21] Requested to load BaseModel
+[2024-06-10 01:21] Loading 2 new models
+[2024-06-10 01:21] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.37it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.46it/s]
+[2024-06-10 01:21] Requested to load ControlNet
+[2024-06-10 01:21] Loading 1 new model
+[2024-06-10 01:22] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.30it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.36it/s]
+[2024-06-10 01:22] Prompt executed in 17.21 seconds
+[2024-06-10 01:22] got prompt
+[2024-06-10 01:22] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:22] Requested to load ControlNet
+[2024-06-10 01:22] Requested to load BaseModel
+[2024-06-10 01:22] Loading 2 new models
+[2024-06-10 01:22] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.37it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.46it/s]
+[2024-06-10 01:22] Requested to load ControlNet
+[2024-06-10 01:22] Loading 1 new model
+[2024-06-10 01:22] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.33it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.40it/s]
+[2024-06-10 01:22] Prompt executed in 17.30 seconds
+[2024-06-10 01:24] got prompt
+[2024-06-10 01:24] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:24] Requested to load SD1ClipModel
+[2024-06-10 01:24] Loading 1 new model
+[2024-06-10 01:24] Requested to load ControlNet
+[2024-06-10 01:24] Requested to load BaseModel
+[2024-06-10 01:24] Loading 2 new models
+[2024-06-10 01:24] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.36it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.44it/s]
+[2024-06-10 01:24] Requested to load ControlNet
+[2024-06-10 01:24] Loading 1 new model
+[2024-06-10 01:24] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.22it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.30it/s]
+[2024-06-10 01:24] Prompt executed in 18.46 seconds
+[2024-06-10 01:25] got prompt
+[2024-06-10 01:25] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:25] Requested to load ControlNet
+[2024-06-10 01:25] Requested to load BaseModel
+[2024-06-10 01:25] Loading 2 new models
+[2024-06-10 01:25] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.40it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.48it/s]
+[2024-06-10 01:25] Requested to load ControlNet
+[2024-06-10 01:25] Loading 1 new model
+[2024-06-10 01:25] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.34it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.40it/s]
+[2024-06-10 01:25] Prompt executed in 17.06 seconds
+[2024-06-10 01:28] got prompt
+[2024-06-10 01:28] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:28] Requested to load ControlNet
+[2024-06-10 01:28] Requested to load BaseModel
+[2024-06-10 01:28] Loading 2 new models
+[2024-06-10 01:28] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.38it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.47it/s]
+[2024-06-10 01:28] Requested to load ControlNet
+[2024-06-10 01:28] Loading 1 new model
+[2024-06-10 01:28] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.30it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.38it/s]
+[2024-06-10 01:28] Prompt executed in 17.76 seconds
+[2024-06-10 01:29] got prompt
+[2024-06-10 01:29] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:29] Requested to load ControlNet
+[2024-06-10 01:29] Requested to load BaseModel
+[2024-06-10 01:29] Loading 2 new models
+[2024-06-10 01:30] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.37it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.45it/s]
+[2024-06-10 01:30] Requested to load ControlNet
+[2024-06-10 01:30] Loading 1 new model
+[2024-06-10 01:30] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.31it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.37it/s]
+[2024-06-10 01:30] Prompt executed in 17.02 seconds
+[2024-06-10 01:31] got prompt
+[2024-06-10 01:31] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:31] Requested to load ControlNet
+[2024-06-10 01:31] Requested to load BaseModel
+[2024-06-10 01:31] Loading 2 new models
+[2024-06-10 01:31] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.36it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.45it/s]
+[2024-06-10 01:31] Requested to load ControlNet
+[2024-06-10 01:31] Loading 1 new model
+[2024-06-10 01:31] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.31it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.39it/s]
+[2024-06-10 01:31] Prompt executed in 17.37 seconds
+[2024-06-10 01:32] got prompt
+[2024-06-10 01:32] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:32] Requested to load ControlNet
+[2024-06-10 01:32] Requested to load BaseModel
+[2024-06-10 01:32] Loading 2 new models
+[2024-06-10 01:32] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.35it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.43it/s]
+[2024-06-10 01:32] Requested to load ControlNet
+[2024-06-10 01:32] Loading 1 new model
+[2024-06-10 01:32] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.30it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.35it/s]
+[2024-06-10 01:32] Prompt executed in 17.84 seconds
+[2024-06-10 01:34] got prompt
+[2024-06-10 01:34] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:34] Requested to load ControlNet
+[2024-06-10 01:34] Requested to load BaseModel
+[2024-06-10 01:34] Loading 2 new models
+[2024-06-10 01:34] 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.39it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:04<00:00,  1.48it/s]
+[2024-06-10 01:34] Requested to load ControlNet
+[2024-06-10 01:34] Loading 1 new model
+[2024-06-10 01:34] 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.31it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.39it/s]
+[2024-06-10 01:34] Prompt executed in 17.68 seconds
+[2024-06-10 01:58] got prompt
+[2024-06-10 01:58] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 01:59] Requested to load SD1ClipModel
+[2024-06-10 01:59] Loading 1 new model
+[2024-06-10 01:59] Requested to load ControlNet
+[2024-06-10 01:59] Requested to load BaseModel
+[2024-06-10 01:59] Loading 2 new models
+[2024-06-10 01:59] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.41it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.50it/s]
+[2024-06-10 01:59] Requested to load ControlNet
+[2024-06-10 01:59] Loading 1 new model
+[2024-06-10 01:59] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.19it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.27it/s]
+[2024-06-10 01:59] Prompt executed in 18.75 seconds
+[2024-06-10 02:01] got prompt
+[2024-06-10 02:01] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 02:01] Requested to load ControlNet
+[2024-06-10 02:01] Requested to load BaseModel
+[2024-06-10 02:01] Loading 2 new models
+[2024-06-10 02:01] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.42it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.51it/s]
+[2024-06-10 02:01] Requested to load ControlNet
+[2024-06-10 02:01] Loading 1 new model
+[2024-06-10 02:01] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.34it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.39it/s]
+[2024-06-10 02:01] Prompt executed in 17.35 seconds
+[2024-06-10 02:02] got prompt
+[2024-06-10 02:02] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 02:02] Requested to load ControlNet
+[2024-06-10 02:02] Requested to load BaseModel
+[2024-06-10 02:02] Loading 2 new models
+[2024-06-10 02:02] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.41it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.50it/s]
+[2024-06-10 02:02] Requested to load ControlNet
+[2024-06-10 02:02] Loading 1 new model
+[2024-06-10 02:02] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.30it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.37it/s]
+[2024-06-10 02:02] Prompt executed in 17.45 seconds
+[2024-06-10 02:03] got prompt
+[2024-06-10 02:03] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 02:03] Requested to load ControlNet
+[2024-06-10 02:03] Requested to load BaseModel
+[2024-06-10 02:03] Loading 2 new models
+[2024-06-10 02:03] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.42it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.51it/s]
+[2024-06-10 02:03] Requested to load ControlNet
+[2024-06-10 02:03] Loading 1 new model
+[2024-06-10 02:03] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.32it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.37it/s]
+[2024-06-10 02:03] Prompt executed in 17.15 seconds
+[2024-06-10 02:04] got prompt
+[2024-06-10 02:04] model_path is C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts\lllyasviel/Annotators\ZoeD_M12_N.pt
+[2024-06-10 02:04] Requested to load ControlNet
+[2024-06-10 02:04] Requested to load BaseModel
+[2024-06-10 02:04] Loading 2 new models
+[2024-06-10 02:04] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.42it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.51it/s]
+[2024-06-10 02:04] Requested to load ControlNet
+[2024-06-10 02:04] Loading 1 new model
+[2024-06-10 02:04] 100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.31it/s]100%|████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:03<00:00,  1.38it/s]
+[2024-06-10 02:04] Prompt executed in 17.35 seconds
