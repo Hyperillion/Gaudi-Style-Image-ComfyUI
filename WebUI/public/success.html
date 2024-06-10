@@ -135,7 +135,7 @@
         <div id="progressBar" class="progress-bar">0%</div>
     </div>
     <div id="progressText"></div>
-    <button onclick="window.location.href = 'index.html'" class="backButton">再试一张</button>
+    <button onclick="window.location.href = 'index.html?returned=true'" class="backButton">再试一张</button>
     <div class="credits">
         <p>项目作者:叶进然</p>
         <p>联系方式:andy.ye@nyu.edu</p>
@@ -147,6 +147,11 @@
     </div>
 
     <script>
+        //return image to user mobile page
+        const showImage = false;
+
+
+
         // Function to get query parameters from the URL
         function getQueryParams() {
             const params = {};
@@ -165,7 +170,7 @@
         const params = getQueryParams();
         const filename = params.filename;
 
-        const showImage = true;
+        
 
 
 

@@ -4,10 +4,10 @@ import json
 from urllib import request, parse
 import random
 import os
-import shutil
+# import shutil
 import time
-import alicloudCheckSDK
-import threading
+# import alicloudCheckSDK
+# import threading
 from PIL import Image
 from termcolor import colored
 

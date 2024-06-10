@@ -285,7 +285,10 @@
         });
 
         window.onload = function () {
-            document.getElementById('userAgreementModal').style.display = 'flex';
+            const params = getQueryParams();
+            if (params.returned != 'true') { 
+                document.getElementById('userAgreementModal').style.display = 'flex'; 
+            }
         };
 
         document.getElementById('enterSystem').addEventListener('click', function () {

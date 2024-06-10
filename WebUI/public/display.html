@@ -184,6 +184,19 @@
         let originalRect;
         let hideModalTimeout;
 
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.slice(1);
+            const pairs = queryString.split('&');
+
+            for (const pair of pairs) {
+                const [key, value] = pair.split('=');
+                params[decodeURIComponent(key)] = decodeURIComponent(value);
+            }
+
+            return params;
+        }
+
         function updateGallery(imageFiles, newImage = null) {
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = ''; // 清空当前内容
