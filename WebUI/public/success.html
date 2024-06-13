@@ -148,7 +148,7 @@
 
     <script>
         //return image to user mobile page
-        const showImage = false;
+        const showImage = true;
 
 
 
@@ -176,7 +176,7 @@
 
         if (filename) {
             // Construct the URL to fetch the JSON data
-            const jsonUrl = `http://192.168.124.59:3000/log/${filename.replace(/\.[^/.]+$/, ".json")}`;
+            const jsonUrl = `http://192.168.137.1:3000/log/${filename.replace(/\.[^/.]+$/, ".json")}`;
 
             let retryCount = 0;
             const maxRetries = 5;
@@ -220,8 +220,8 @@
                                 document.querySelector('#outputImage').style.display = 'block';
                                 document.querySelector('.progress-container').style.display = 'none';
                                 document.querySelector('#progressText').style.display = 'none';
-                                document.getElementById("outputImage").src=`http://192.168.124.59:3000/pass/${outputFilename}`;
-                                document.getElementById("outputText").innerHTML=`http://192.168.124.59:3000/pass/${outputFilename}`;
+                                document.getElementById("outputImage").src=`http://192.168.137.1:3000/pass/${outputFilename}`;
+                                document.getElementById("outputText").innerHTML=`192.168.137.1:3000/pass/${outputFilename}`;
                             }
                         } else {
                             retryCount = 0;  // Reset retry count on success

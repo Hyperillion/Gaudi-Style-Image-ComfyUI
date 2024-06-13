@@ -38,7 +38,7 @@
         }
 
         .hoverBox {
-            width: 90vw;
+            width: 80vw;
             margin-top: 15vh;
             display: flex;
             flex-wrap: wrap;
@@ -49,9 +49,9 @@
             border-style: solid;
             border-width: 0.3vw;
             border-color: gainsboro;
-            width: 200px;
+            width: 145px;
             height: auto;
-            margin: 15px;
+            margin: 5px;
             transition: transform 0.5s ease;
         }
 
@@ -239,7 +239,7 @@
 
         function resetHideModalTimeout() {
             clearTimeout(hideModalTimeout);
-            hideModalTimeout = setTimeout(hideModal, 25000);
+            hideModalTimeout = setTimeout(hideModal, 10000);
         }
 
         function showModal(image, isNew = false) {
@@ -342,7 +342,7 @@
 
             }, 500);
             // Automatically hide the modal after 30 seconds
-            hideModalTimeout = setTimeout(hideModal, 5000);
+            resetHideModalTimeout();
         }
 
         fetchImages();

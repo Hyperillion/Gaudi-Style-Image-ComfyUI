@@ -1,112 +1,51 @@
 ## ComfyUI-Manager: installing dependencies done.
-[2024-06-11 02:24] ** ComfyUI startup time: 2024-06-11 02:24:54.954199
-[2024-06-11 02:24] ** Platform: Windows
-[2024-06-11 02:24] ** Python version: 3.12.4 (tags/v3.12.4:8e8a4ba, Jun  6 2024, 19:30:16) [MSC v.1940 64 bit (AMD64)]
-[2024-06-11 02:24] ** Python executable: C:\Python312\python.exe
-[2024-06-11 02:24] ** Log path: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\Gaudi-Style-Image-ComfyUI\comfyui.log
-[2024-06-11 02:24] 
+[2024-06-13 11:26] ** ComfyUI startup time: 2024-06-13 11:26:04.890423
+[2024-06-13 11:26] ** Platform: Windows
+[2024-06-13 11:26] ** Python version: 3.12.4 (tags/v3.12.4:8e8a4ba, Jun  6 2024, 19:30:16) [MSC v.1940 64 bit (AMD64)]
+[2024-06-13 11:26] ** Python executable: C:\Python312\python.exe
+[2024-06-13 11:26] ** Log path: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\Gaudi-Style-Image-ComfyUI\comfyui.log
+[2024-06-13 11:26] 
 Prestartup times for custom nodes:
-[2024-06-11 02:24]    0.3 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
-[2024-06-11 02:24] 
+[2024-06-13 11:26]    0.8 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
+[2024-06-13 11:26] 
 Total VRAM 8192 MB, total RAM 16306 MB
-[2024-06-11 02:24] Set vram state to: NORMAL_VRAM
-[2024-06-11 02:24] Device: cuda:0 NVIDIA GeForce RTX 2070 SUPER : cudaMallocAsync
-[2024-06-11 02:24] VAE dtype: torch.float32
-[2024-06-11 02:24] Using pytorch cross attention
-[2024-06-11 02:24] [Crystools [0;32mINFO[0m] Crystools version: 1.12.0
-[2024-06-11 02:25] [Crystools [0;32mINFO[0m] CPU: AMD Ryzen 7 3700X 8-Core Processor - Arch: AMD64 - OS: Windows 11
-[2024-06-11 02:25] [Crystools [0;32mINFO[0m] GPU/s:
-[2024-06-11 02:25] [Crystools [0;32mINFO[0m] 0) NVIDIA GeForce RTX 2070 SUPER
-[2024-06-11 02:25] [Crystools [0;32mINFO[0m] NVIDIA Driver: 555.99
-[2024-06-11 02:25] ### Loading: ComfyUI-Manager (V2.35)
-[2024-06-11 02:25] ### ComfyUI Revision: 2178 [ece5acb8] | Released on '2024-05-12'
-[2024-06-11 02:25] Exception in thread Thread-10 (<lambda>):
-[2024-06-11 02:25] Traceback (most recent call last):
-[2024-06-11 02:25]   File "C:\Python312\Lib\site-packages\aiohttp\connector.py", line 1203, in _create_direct_connection
-[2024-06-11 02:25]     hosts = await self._resolve_host(host, port, traces=traces)
-[2024-06-11 02:25]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\site-packages\aiohttp\connector.py", line 880, in _resolve_host
-[2024-06-11 02:25]     return await asyncio.shield(resolved_host_task)
-[2024-06-11 02:25]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\site-packages\aiohttp\connector.py", line 917, in _resolve_host_with_throttle
-[2024-06-11 02:25]     addrs = await self._resolver.resolve(host, port, family=self._family)
-[2024-06-11 02:25]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\site-packages\aiohttp\resolver.py", line 33, in resolve
-[2024-06-11 02:25]     infos = await self._loop.getaddrinfo(
-[2024-06-11 02:25]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\asyncio\base_events.py", line 901, in getaddrinfo
-[2024-06-11 02:25]     return await self.run_in_executor(
-[2024-06-11 02:25]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\concurrent\futures\thread.py", line 58, in run
-[2024-06-11 02:25]     result = self.fn(*self.args, **self.kwargs)
-[2024-06-11 02:25]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\socket.py", line 964, in getaddrinfo
-[2024-06-11 02:25]     for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
-[2024-06-11 02:25] [36;20m[comfyui_controlnet_aux] | INFO -> Using ckpts path: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts[0m
-[2024-06-11 02:25]  [36;20m[comfyui_controlnet_aux] | INFO -> Using symlinks: False[0m
-[2024-06-11 02:25]   [36;20m[comfyui_controlnet_aux] | INFO -> Using ort providers: ['CUDAExecutionProvider', 'DirectMLExecutionProvider', 'OpenVINOExecutionProvider', 'ROCMExecutionProvider', 'CPUExecutionProvider', 'CoreMLExecutionProvider'][0m
-[2024-06-11 02:25]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25] socket.gaierror: [Errno 11004] getaddrinfo failed
-[2024-06-11 02:25] 
-[2024-06-11 02:25] The above exception was the direct cause of the following exception:
-[2024-06-11 02:25] 
-[2024-06-11 02:25] Traceback (most recent call last):
-[2024-06-11 02:25]   File "C:\Python312\Lib\threading.py", line 1073, in _bootstrap_inner
-[2024-06-11 02:25]     self.run()
-[2024-06-11 02:25]   File "C:\Python312\Lib\threading.py", line 1010, in run
-[2024-06-11 02:25]     self._target(*self._args, **self._kwargs)
-[2024-06-11 02:25]   File "C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager\glob\manager_server.py", line 1667, in <lambda>
-[2024-06-11 02:25]     threading.Thread(target=lambda: asyncio.run(default_cache_update())).start()
-[2024-06-11 02:25]                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\asyncio\runners.py", line 194, in run
-[2024-06-11 02:25]     return runner.run(main)
-[2024-06-11 02:25]            ^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\asyncio\runners.py", line 118, in run
-[2024-06-11 02:25]     return self._loop.run_until_complete(task)
-[2024-06-11 02:25]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
-[2024-06-11 02:25]     return future.result()
-[2024-06-11 02:25]            ^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager\glob\manager_server.py", line 1664, in default_cache_update
-[2024-06-11 02:25]     await asyncio.gather(a, b, c, d, e)
-[2024-06-11 02:25]   File "C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager\glob\manager_server.py", line 1651, in get_cache
-[2024-06-11 02:25]     json_obj = await core.get_data(uri, True)
-[2024-06-11 02:25]                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager\glob\manager_core.py", line 583, in get_data
-[2024-06-11 02:25]     async with session.get(uri) as resp:
-[2024-06-11 02:25]   File "C:\Python312\Lib\site-packages\aiohttp\client.py", line 1197, in __aenter__
-[2024-06-11 02:25]     self._resp = await self._coro
-[2024-06-11 02:25]                  ^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\site-packages\aiohttp\client.py", line 581, in _request
-[2024-06-11 02:25]     conn = await self._connector.connect(
-[2024-06-11 02:25]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\site-packages\aiohttp\connector.py", line 544, in connect
-[2024-06-11 02:25]     proto = await self._create_connection(req, traces, timeout)
-[2024-06-11 02:25]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\site-packages\aiohttp\connector.py", line 944, in _create_connection
-[2024-06-11 02:25]     _, proto = await self._create_direct_connection(req, traces, timeout)
-[2024-06-11 02:25]                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2024-06-11 02:25]   File "C:\Python312\Lib\site-packages\aiohttp\connector.py", line 1209, in _create_direct_connection
-[2024-06-11 02:25]     raise ClientConnectorError(req.connection_key, exc) from exc
-[2024-06-11 02:25] aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host raw.githubusercontent.com:443 ssl:default [getaddrinfo failed]
-[2024-06-11 02:25] C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\node_wrappers\dwpose.py:26: UserWarning: DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly
+[2024-06-13 11:26] Set vram state to: NORMAL_VRAM
+[2024-06-13 11:26] Device: cuda:0 NVIDIA GeForce RTX 2070 SUPER : cudaMallocAsync
+[2024-06-13 11:26] VAE dtype: torch.float32
+[2024-06-13 11:26] Using pytorch cross attention
+[2024-06-13 11:26] [Crystools [0;32mINFO[0m] Crystools version: 1.12.0
+[2024-06-13 11:26] [Crystools [0;32mINFO[0m] CPU: AMD Ryzen 7 3700X 8-Core Processor - Arch: AMD64 - OS: Windows 11
+[2024-06-13 11:26] [Crystools [0;32mINFO[0m] GPU/s:
+[2024-06-13 11:26] [Crystools [0;32mINFO[0m] 0) NVIDIA GeForce RTX 2070 SUPER
+[2024-06-13 11:26] [Crystools [0;32mINFO[0m] NVIDIA Driver: 555.99
+[2024-06-13 11:26] ### Loading: ComfyUI-Manager (V2.35)
+[2024-06-13 11:26] ### ComfyUI Revision: 2178 [ece5acb8] | Released on '2024-05-12'
+[2024-06-13 11:26] [36;20m[comfyui_controlnet_aux] | INFO -> Using ckpts path: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts[0m
+[2024-06-13 11:26] [36;20m[comfyui_controlnet_aux] | INFO -> Using symlinks: False[0m
+[2024-06-13 11:26] [36;20m[comfyui_controlnet_aux] | INFO -> Using ort providers: ['CUDAExecutionProvider', 'DirectMLExecutionProvider', 'OpenVINOExecutionProvider', 'ROCMExecutionProvider', 'CPUExecutionProvider', 'CoreMLExecutionProvider'][0m
+[2024-06-13 11:26] C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\node_wrappers\dwpose.py:26: UserWarning: DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly
   warnings.warn("DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly")
-[2024-06-11 02:25] [36;20m[comfy_mtb] | INFO -> loaded [96m73[0m nodes successfuly[0m
-[2024-06-11 02:25] [36;20m[comfy_mtb] | INFO -> Some nodes (5) could not be loaded. This can be ignored, but go to http://None:8188/mtb if you want more information.[0m
-[2024-06-11 02:25] 
+[2024-06-13 11:26] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
+[2024-06-13 11:26] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
+[2024-06-13 11:26] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
+[2024-06-13 11:26] [36;20m[comfy_mtb] | INFO -> loaded [96m73[0m nodes successfuly[0m
+[2024-06-13 11:26] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/github-stats.json
+[2024-06-13 11:26] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
+[2024-06-13 11:26] [36;20m[comfy_mtb] | INFO -> Some nodes (5) could not be loaded. This can be ignored, but go to http://None:8188/mtb if you want more information.[0m
+[2024-06-13 11:26] 
 Import times for custom nodes:
-[2024-06-11 02:25]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\websocket_image_save.py
-[2024-06-11 02:25]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\image-resize-comfyui
-[2024-06-11 02:25]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui-tooling-nodes
-[2024-06-11 02:25]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Crystools-save
-[2024-06-11 02:25]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\mikey_nodes
-[2024-06-11 02:25]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Image-Saver
-[2024-06-11 02:25]    0.2 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
-[2024-06-11 02:25]    0.4 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux
-[2024-06-11 02:25]    0.4 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_segment_anything
-[2024-06-11 02:25]    2.8 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfy_mtb
-[2024-06-11 02:25]    2.8 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Crystools
-[2024-06-11 02:25] 
-[2024-06-11 02:25] Starting server
+[2024-06-13 11:26]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\websocket_image_save.py
+[2024-06-13 11:26]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui-tooling-nodes
+[2024-06-13 11:26]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\mikey_nodes
+[2024-06-13 11:26]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Crystools-save
+[2024-06-13 11:26]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Image-Saver
+[2024-06-13 11:26]    0.0 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\image-resize-comfyui
+[2024-06-13 11:26]    0.4 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux
+[2024-06-13 11:26]    0.5 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
+[2024-06-13 11:26]    0.5 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_segment_anything
+[2024-06-13 11:26]    3.2 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Crystools
+[2024-06-13 11:26]    5.1 seconds: C:\Users\Public\Gaudi\ComfyUI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfy_mtb
+[2024-06-13 11:26] 
+[2024-06-13 11:26] Starting server
 
-[2024-06-11 02:25] To see the GUI go to: http://0.0.0.0:8188
+[2024-06-13 11:26] To see the GUI go to: http://0.0.0.0:8188
