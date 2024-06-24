@@ -186,6 +186,20 @@ def checkAIGCImage(output_directory = "", pass_directory= "", fail_directory= ""
                             
                     except TencentCloudSDKException as err:
                         print(err)
+                        os.replace(os.path.join(output_directory, filename), os.path.join(fail_directory, filename))
+                        print(colored('error:','red'), filename)
+                        # print(response_dict['Label'],response_dict['SubLabel'], response_dict['Score'])
+                        # print(response_dict)
+                        progress={
+                            "stage": "error",
+                            "queue_length": 1,
+                            "progress": -2
+                        }
+                            
+                        with open(json_path, 'w') as file:
+                            json.dump(progress, file)
+                            print('update json file:', progress)
+                        
 
                     # continue
                 else:
